@@ -15,6 +15,9 @@ struct HabitGrid: View {
 
     var body: some View {
         VStack {
+            Text("Today is \(today, formatter: dateFormatter)")
+            Text("Start Date: \(habit.startDate, formatter: dateFormatter)")
+            
             LazyVGrid(columns: columns) {
                 ForEach(weekDays, id: \.self) { day in
                     Text(day)
@@ -28,15 +31,17 @@ struct HabitGrid: View {
     }
 
     private func cellView(for index: Int) -> some View {
-        let cellDate = Calendar.current.date(byAdding: .day, value: index - 24, to: today)!
+        // cellDate is the date for the grid item
+        let cellDate = Calendar.current.date(byAdding: .day, value: index, to: habit.startDate)!
         let isInPast = cellDate < today
         let isInFuture = cellDate > today
-        let isCompleted = habit.isCompleted(on: cellDate)
         let isToday = Calendar.current.isDate(cellDate, inSameDayAs: today)
+        let isCompleted = habit.isCompleted(on: cellDate)
 
         return ZStack {
+            
             RoundedRectangle(cornerRadius: 5)
-                .fill(isCompleted ? Color.green : (isInPast ? Color.red : Color.white))
+                .fill(isCompleted ? Color.green : (isToday ? Color.accentColor : isInFuture ? Color.clear : Color.pink))
                 .frame(width: 30, height: 30)
 
             ZStack {
@@ -49,7 +54,7 @@ struct HabitGrid: View {
                     habit.toggleCompletion(for: cellDate)
                 }) {
                     RoundedRectangle(cornerRadius: 5)
-                        .stroke(isToday ? Color.gray : Color.black, lineWidth: 1)
+                        .stroke(Color.black, lineWidth: 1)
                         .frame(width: 30, height: 30)
                 }
             }
@@ -65,6 +70,7 @@ struct HabitGrid: View {
 
 struct HabitGrid_Previews: PreviewProvider {
     static var previews: some View {
-        HabitGrid(habit: Habit(title: "Sample Habit", count: 0, completedDates: []), today: Date())
+        // set today to 5 days before
+        HabitGrid(habit: Habit(title: "Sample Habit", count: 0, completedDates: [],startDate: Date().addingTimeInterval(-5*24*3600)), today: Date())
     }
 }

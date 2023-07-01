@@ -34,11 +34,11 @@ struct EmptyViewWithImageAndText: View {
     var text: String
 
     var body: some View {
-        VStack {
+        VStack{
             Image(image)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 300, height: 300)
+                .frame(width: 300, height: 400)
             Text(text)
                 .font(.title2)
                 .multilineTextAlignment(.center)
@@ -65,7 +65,7 @@ struct HabitRow: View {
                             .foregroundColor(.green)
                     } else {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.red)
+                            .foregroundColor(.pink)
                     }
                 }
             }
@@ -77,6 +77,9 @@ struct ContentView: View {
     @StateObject private var habitStore = HabitStore()
     @State private var showingAddHabitSheet = false
     @State private var newHabitTitle = ""
+    @State private var newHabitStartDate = Date()
+
+    
 
     var body: some View {
         NavigationView {
@@ -104,7 +107,7 @@ struct ContentView: View {
                 }
             )
             .sheet(isPresented: $showingAddHabitSheet) {
-                AddHabitSheet(newHabitTitle: $newHabitTitle) {
+                AddHabitSheet(newHabitTitle: $newHabitTitle, newHabitStartDate: $newHabitStartDate) {
                     self.addHabit()
                     self.showingAddHabitSheet = false
                 }
@@ -113,7 +116,7 @@ struct ContentView: View {
     }
 
     func addHabit() {
-        let newHabit = Habit(title: newHabitTitle, count: 0, completedDates: [])
+        let newHabit = Habit(title: newHabitTitle, count: 0, completedDates: [], startDate: newHabitStartDate)
         habitStore.addHabit(newHabit)
         newHabitTitle = ""
     }

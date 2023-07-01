@@ -11,14 +11,23 @@ struct AddHabitSheet: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var newHabitTitle: String
+    @Binding var newHabitStartDate: Date
+    
     let onAdd: () -> Void
 
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Habit title", text: $newHabitTitle)
-                    .padding()
+                Spacer()
+                TextField("Exercise for 10 mins every day", text: $newHabitTitle)
+                    .padding(5)
+                    .font(.title2)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                DatePicker("Start Date", selection: $newHabitStartDate, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+                    .padding(10)
+                Spacer()
+                
             }
             .padding()
             .navigationBarTitle("Add Habit")
@@ -34,7 +43,7 @@ struct AddHabitSheet: View {
 
 struct AddHabitSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AddHabitSheet(newHabitTitle: .constant("")) {
+        AddHabitSheet(newHabitTitle: .constant(""), newHabitStartDate: .constant(Date())) {
             // Action
         }
     }

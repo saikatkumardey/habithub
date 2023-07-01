@@ -12,18 +12,20 @@ class Habit: ObservableObject, Identifiable, Codable {
     @Published var count: Int
     @Published var completedDates: [Date]
     @Published var maxStreak: Int = 0
+    @Published var startDate: Date = Date()
     
     let id: UUID
     
-    init(id: UUID = UUID(), title: String, count: Int, completedDates: [Date]) {
+    init(id: UUID = UUID(), title: String, count: Int, completedDates: [Date], startDate: Date = Date()) {
         self.id = id
         self.title = title
         self.count = count
         self.completedDates = completedDates
+        self.startDate = startDate
     }
     
     enum CodingKeys: String, CodingKey {
-            case id, title, count, completedDates
+            case id, title, count, completedDates, startDate
         }
 
     required init(from decoder: Decoder) throws {
@@ -32,6 +34,7 @@ class Habit: ObservableObject, Identifiable, Codable {
         title = try container.decode(String.self, forKey: .title)
         count = try container.decode(Int.self, forKey: .count)
         completedDates = try container.decode([Date].self, forKey: .completedDates)
+        startDate = try container.decode(Date.self, forKey: .startDate)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -40,6 +43,7 @@ class Habit: ObservableObject, Identifiable, Codable {
         try container.encode(title, forKey: .title)
         try container.encode(count, forKey: .count)
         try container.encode(completedDates, forKey: .completedDates)
+        try container.encode(startDate, forKey: .startDate)
     }
 
     func toggleCompletion(for date: Date) {
@@ -68,18 +72,22 @@ class Habit: ObservableObject, Identifiable, Codable {
         }
         return streak
     }
+    
+    // consider from start date only, min(n,today-startDate)
     func lastNdayCells(n: Int) -> [Int] {
         var cells = [Int]()
         var date = Date()
-        for _ in 0..<n {
+        var i = 0
+        while i < n && date >= startDate {
             if isCompleted(on: date) {
                 cells.append(1)
             } else {
                 cells.append(0)
             }
             date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+            i += 1
         }
-        return cells.reversed()
+        return cells
     }
 
 }
