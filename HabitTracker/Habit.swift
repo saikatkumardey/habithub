@@ -9,41 +9,43 @@ import Foundation
 
 class Habit: ObservableObject, Identifiable, Codable {
     @Published var title: String
-    @Published var count: Int
     @Published var completedDates: [Date]
     @Published var maxStreak: Int = 0
     @Published var startDate: Date = Date()
+    @Published var isHabitCompleted: Bool = false
     
     let id: UUID
     
-    init(id: UUID = UUID(), title: String, count: Int, completedDates: [Date], startDate: Date = Date()) {
+    init(id: UUID = UUID(), title: String, completedDates: [Date], startDate: Date = Date(), isCompleted: Bool = false) {
         self.id = id
         self.title = title
-        self.count = count
         self.completedDates = completedDates
         self.startDate = startDate
+        self.isHabitCompleted = isCompleted
     }
     
     enum CodingKeys: String, CodingKey {
-            case id, title, count, completedDates, startDate
+            case id, title, count, completedDates, startDate, isHabitCompleted
+        
         }
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
-        count = try container.decode(Int.self, forKey: .count)
         completedDates = try container.decode([Date].self, forKey: .completedDates)
         startDate = try container.decode(Date.self, forKey: .startDate)
+        isHabitCompleted = try container.decode(Bool.self, forKey: .isHabitCompleted)
+    
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
-        try container.encode(count, forKey: .count)
         try container.encode(completedDates, forKey: .completedDates)
         try container.encode(startDate, forKey: .startDate)
+        try container.encode(isHabitCompleted, forKey: .isHabitCompleted)
     }
 
     func toggleCompletion(for date: Date) {
@@ -67,10 +69,22 @@ class Habit: ObservableObject, Identifiable, Codable {
             streak += 1
             date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
         }
-        if streak > maxStreak {
-            maxStreak = streak
-        }
         return streak
+    }
+    
+    func calculateLongestStreak() -> Int {
+        var longestStreak = 0
+        var date = Date()
+        while date >= startDate {
+            var streak = 0
+            while isCompleted(on: date) {
+                streak += 1
+                date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+            }
+            longestStreak = max(streak, longestStreak)
+            date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+        }
+        return longestStreak
     }
     
     // consider from start date only, min(n,today-startDate)
@@ -87,9 +101,13 @@ class Habit: ObservableObject, Identifiable, Codable {
             date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
             i += 1
         }
-        return cells
+        return cells.reversed()
     }
-
+    
+    func toggleCompletion() {
+        isHabitCompleted.toggle()
+    }
+    
 }
 
 extension Date {

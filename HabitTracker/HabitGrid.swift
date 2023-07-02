@@ -15,9 +15,6 @@ struct HabitGrid: View {
 
     var body: some View {
         VStack {
-            Text("Today is \(today, formatter: dateFormatter)")
-            Text("Start Date: \(habit.startDate, formatter: dateFormatter)")
-            
             LazyVGrid(columns: columns) {
                 ForEach(weekDays, id: \.self) { day in
                     Text(day)
@@ -26,7 +23,7 @@ struct HabitGrid: View {
                 ForEach(0..<49, id: \.self) { index in
                     cellView(for: index)
                 }
-            }
+            }.padding(10)
         }
     }
 
@@ -43,10 +40,11 @@ struct HabitGrid: View {
             RoundedRectangle(cornerRadius: 5)
                 .fill(isCompleted ? Color.green : (isToday ? Color.accentColor : isInFuture ? Color.clear : Color.pink))
                 .frame(width: 30, height: 30)
+            
 
             ZStack {
                 Text("\(cellDate, formatter: dateFormatter)")
-                    .font(.caption2)
+                    .font(.system(size: 12, weight: .light, design: .rounded))
                     .foregroundColor(isInPast ? Color.white : Color.black)
 
                 Button(action: {
@@ -56,6 +54,7 @@ struct HabitGrid: View {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.black, lineWidth: 1)
                         .frame(width: 30, height: 30)
+                    
                 }
             }
         }
@@ -71,6 +70,6 @@ struct HabitGrid: View {
 struct HabitGrid_Previews: PreviewProvider {
     static var previews: some View {
         // set today to 5 days before
-        HabitGrid(habit: Habit(title: "Sample Habit", count: 0, completedDates: [],startDate: Date().addingTimeInterval(-5*24*3600)), today: Date())
+        HabitGrid(habit: Habit(title: "Sample Habit", completedDates: [],startDate: Date().addingTimeInterval(-5*24*3600)), today: Date())
     }
 }
