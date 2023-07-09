@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct HabitTrackerApp: App {
+    
+    @StateObject private var habitStore = HabitStore()
+    @StateObject private var notificationDelegate = NotificationDelegate()
+  
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(habitStore)
+                .font(.system(.body, design: .serif))
+                .onAppear(perform: {
+                    UNUserNotificationCenter.current().delegate = notificationDelegate
+                    notificationDelegate.habitStore = habitStore
+                })
+                .tint(.green)
         }
     }
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */; };
+		8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19514F2A593F2E00E33E2C /* HabitStore.swift */; };
+		8A1951552A5A938200E33E2C /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8A1951542A5A938200E33E2C /* ElegantCalendar */; };
+		8A1951572A5AA1AB00E33E2C /* HabitCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951562A5AA1AB00E33E2C /* HabitCalendarView.swift */; };
+		8A19515A2A5AA6C300E33E2C /* YCalendarPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8A1951592A5AA6C300E33E2C /* YCalendarPicker */; };
+		8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515B2A5AF31200E33E2C /* HabitRowView.swift */; };
+		8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515D2A5AF38A00E33E2C /* HabitListView.swift */; };
+		8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951612A5AF9E300E33E2C /* EditHabitView.swift */; };
 		8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */; };
 		8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC92A502F3F00C0A67C /* ContentView.swift */; };
 		8A72FCCC2A502F4100C0A67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A72FCCB2A502F4100C0A67C /* Assets.xcassets */; };
@@ -16,8 +24,8 @@
 		8A72FCE52A502F4100C0A67C /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCE42A502F4100C0A67C /* HabitTrackerUITestsLaunchTests.swift */; };
 		8A72FCF22A502F5800C0A67C /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF12A502F5800C0A67C /* Habit.swift */; };
 		8A72FCF42A502F9800C0A67C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */; };
-		8A72FCF62A5034C300C0A67C /* AddHabitSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF52A5034C300C0A67C /* AddHabitSheet.swift */; };
-		8A72FCF82A5035CC00C0A67C /* HabitGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF72A5035CC00C0A67C /* HabitGrid.swift */; };
+		8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF52A5034C300C0A67C /* AddHabitView.swift */; };
+		8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderConfigurationView.swift; sourceTree = "<group>"; };
+		8A19514F2A593F2E00E33E2C /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
+		8A1951562A5AA1AB00E33E2C /* HabitCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCalendarView.swift; sourceTree = "<group>"; };
+		8A19515B2A5AF31200E33E2C /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
+		8A19515D2A5AF38A00E33E2C /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
+		8A1951612A5AF9E300E33E2C /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		8A72FCC42A502F3F00C0A67C /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
 		8A72FCC92A502F3F00C0A67C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,8 +64,8 @@
 		8A72FCE42A502F4100C0A67C /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8A72FCF12A502F5800C0A67C /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
-		8A72FCF52A5034C300C0A67C /* AddHabitSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitSheet.swift; sourceTree = "<group>"; };
-		8A72FCF72A5035CC00C0A67C /* HabitGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitGrid.swift; sourceTree = "<group>"; };
+		8A72FCF52A5034C300C0A67C /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
+		8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A19515A2A5AA6C300E33E2C /* YCalendarPicker in Frameworks */,
+				8A1951552A5A938200E33E2C /* ElegantCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A1951522A593FE200E33E2C /* views */ = {
+			isa = PBXGroup;
+			children = (
+				8A72FCF52A5034C300C0A67C /* AddHabitView.swift */,
+				8A1951612A5AF9E300E33E2C /* EditHabitView.swift */,
+				8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */,
+				8A72FCC92A502F3F00C0A67C /* ContentView.swift */,
+				8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */,
+				8A1951562A5AA1AB00E33E2C /* HabitCalendarView.swift */,
+				8A19515B2A5AF31200E33E2C /* HabitRowView.swift */,
+				8A19515D2A5AF38A00E33E2C /* HabitListView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		8A72FCBB2A502F3F00C0A67C = {
 			isa = PBXGroup;
 			children = (
@@ -102,12 +133,11 @@
 		8A72FCC62A502F3F00C0A67C /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
-				8A72FCF52A5034C300C0A67C /* AddHabitSheet.swift */,
+				8A1951522A593FE200E33E2C /* views */,
 				8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */,
-				8A72FCC92A502F3F00C0A67C /* ContentView.swift */,
-				8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */,
-				8A72FCF72A5035CC00C0A67C /* HabitGrid.swift */,
 				8A72FCF12A502F5800C0A67C /* Habit.swift */,
+				8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */,
+				8A19514F2A593F2E00E33E2C /* HabitStore.swift */,
 				8A72FCCB2A502F4100C0A67C /* Assets.xcassets */,
 				8A72FCCD2A502F4100C0A67C /* Preview Content */,
 			);
@@ -155,6 +185,10 @@
 			dependencies = (
 			);
 			name = HabitTracker;
+			packageProductDependencies = (
+				8A1951542A5A938200E33E2C /* ElegantCalendar */,
+				8A1951592A5AA6C300E33E2C /* YCalendarPicker */,
+			);
 			productName = HabitTracker;
 			productReference = 8A72FCC42A502F3F00C0A67C /* HabitTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -203,7 +237,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					8A72FCC32A502F3F00C0A67C = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -227,6 +261,10 @@
 				Base,
 			);
 			mainGroup = 8A72FCBB2A502F3F00C0A67C;
+			packageReferences = (
+				8A1951532A5A938200E33E2C /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
+				8A1951582A5AA6C300E33E2C /* XCRemoteSwiftPackageReference "ycalendarpicker-ios" */,
+			);
 			productRefGroup = 8A72FCC52A502F3F00C0A67C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,11 +307,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A72FCF82A5035CC00C0A67C /* HabitGrid.swift in Sources */,
+				8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */,
 				8A72FCF22A502F5800C0A67C /* Habit.swift in Sources */,
-				8A72FCF62A5034C300C0A67C /* AddHabitSheet.swift in Sources */,
+				8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */,
 				8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */,
+				8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */,
+				8A1951572A5AA1AB00E33E2C /* HabitCalendarView.swift in Sources */,
+				8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */,
+				8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */,
+				8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */,
 				8A72FCF42A502F9800C0A67C /* HabitDetailView.swift in Sources */,
+				8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */,
 				8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +391,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -407,6 +452,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -430,11 +476,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = B8JD4KN6R9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Indie Habits";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -444,12 +494,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.saikatkumardey.HabitTracker;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saikatkumardey.indiehabits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -458,11 +511,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = B8JD4KN6R9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Indie Habits";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -472,12 +529,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.saikatkumardey.HabitTracker;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saikatkumardey.indiehabits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -593,6 +653,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A1951532A5A938200E33E2C /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ThasianX/ElegantCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.2;
+			};
+		};
+		8A1951582A5AA6C300E33E2C /* XCRemoteSwiftPackageReference "ycalendarpicker-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yml-org/ycalendarpicker-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A1951542A5A938200E33E2C /* ElegantCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A1951532A5A938200E33E2C /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
+			productName = ElegantCalendar;
+		};
+		8A1951592A5AA6C300E33E2C /* YCalendarPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A1951582A5AA6C300E33E2C /* XCRemoteSwiftPackageReference "ycalendarpicker-ios" */;
+			productName = YCalendarPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A72FCBC2A502F3F00C0A67C /* Project object */;
 }
