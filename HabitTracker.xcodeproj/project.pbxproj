@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */; };
 		8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19514F2A593F2E00E33E2C /* HabitStore.swift */; };
-		8A1951552A5A938200E33E2C /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8A1951542A5A938200E33E2C /* ElegantCalendar */; };
-		8A1951572A5AA1AB00E33E2C /* HabitCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951562A5AA1AB00E33E2C /* HabitCalendarView.swift */; };
-		8A19515A2A5AA6C300E33E2C /* YCalendarPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8A1951592A5AA6C300E33E2C /* YCalendarPicker */; };
 		8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515B2A5AF31200E33E2C /* HabitRowView.swift */; };
 		8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515D2A5AF38A00E33E2C /* HabitListView.swift */; };
 		8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951612A5AF9E300E33E2C /* EditHabitView.swift */; };
@@ -48,7 +45,6 @@
 /* Begin PBXFileReference section */
 		8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderConfigurationView.swift; sourceTree = "<group>"; };
 		8A19514F2A593F2E00E33E2C /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
-		8A1951562A5AA1AB00E33E2C /* HabitCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCalendarView.swift; sourceTree = "<group>"; };
 		8A19515B2A5AF31200E33E2C /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		8A19515D2A5AF38A00E33E2C /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		8A1951612A5AF9E300E33E2C /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
@@ -73,8 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A19515A2A5AA6C300E33E2C /* YCalendarPicker in Frameworks */,
-				8A1951552A5A938200E33E2C /* ElegantCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +97,6 @@
 				8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */,
 				8A72FCC92A502F3F00C0A67C /* ContentView.swift */,
 				8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */,
-				8A1951562A5AA1AB00E33E2C /* HabitCalendarView.swift */,
 				8A19515B2A5AF31200E33E2C /* HabitRowView.swift */,
 				8A19515D2A5AF38A00E33E2C /* HabitListView.swift */,
 			);
@@ -186,8 +179,6 @@
 			);
 			name = HabitTracker;
 			packageProductDependencies = (
-				8A1951542A5A938200E33E2C /* ElegantCalendar */,
-				8A1951592A5AA6C300E33E2C /* YCalendarPicker */,
 			);
 			productName = HabitTracker;
 			productReference = 8A72FCC42A502F3F00C0A67C /* HabitTracker.app */;
@@ -262,8 +253,6 @@
 			);
 			mainGroup = 8A72FCBB2A502F3F00C0A67C;
 			packageReferences = (
-				8A1951532A5A938200E33E2C /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
-				8A1951582A5AA6C300E33E2C /* XCRemoteSwiftPackageReference "ycalendarpicker-ios" */,
 			);
 			productRefGroup = 8A72FCC52A502F3F00C0A67C /* Products */;
 			projectDirPath = "";
@@ -312,7 +301,6 @@
 				8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */,
 				8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */,
 				8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */,
-				8A1951572A5AA1AB00E33E2C /* HabitCalendarView.swift in Sources */,
 				8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */,
 				8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */,
 				8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */,
@@ -500,6 +488,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -535,6 +524,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -653,38 +643,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8A1951532A5A938200E33E2C /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ThasianX/ElegantCalendar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.3.2;
-			};
-		};
-		8A1951582A5AA6C300E33E2C /* XCRemoteSwiftPackageReference "ycalendarpicker-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yml-org/ycalendarpicker-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8A1951542A5A938200E33E2C /* ElegantCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8A1951532A5A938200E33E2C /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
-			productName = ElegantCalendar;
-		};
-		8A1951592A5AA6C300E33E2C /* YCalendarPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8A1951582A5AA6C300E33E2C /* XCRemoteSwiftPackageReference "ycalendarpicker-ios" */;
-			productName = YCalendarPicker;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A72FCBC2A502F3F00C0A67C /* Project object */;
 }
