@@ -97,7 +97,10 @@ class Habit: ObservableObject, Identifiable, Codable {
         return streak
     }
     
-    // dfs
+    func calculateTotalCompleted() -> Int {
+        return completedDates.count
+    }    
+    
     func calculateLongestStreak() -> Int {
         var longestStreak = 0
         var date = Date()

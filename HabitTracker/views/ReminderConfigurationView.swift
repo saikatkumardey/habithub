@@ -28,19 +28,20 @@ struct ReminderConfigurationView: View {
     }
     
     var body: some View {
-        VStack(spacing:5) {
+        VStack(spacing:10) {
             HStack(alignment: .center){
-                VStack{
+                VStack(alignment:.leading){
                     Text("Remind me")
                     if isReminderEnabled {
                         Text(formattedReminderTime)
                             .foregroundColor(.secondary)
+                            .font(.caption)
                     }
                 }
                 Toggle("", isOn: $isReminderEnabled)
             }
             if isReminderEnabled {
-                DatePicker("🔔 Time",
+                DatePicker("Time",
                            selection: $reminderTime,
                            displayedComponents: .hourAndMinute)
                 .datePickerStyle(.compact)

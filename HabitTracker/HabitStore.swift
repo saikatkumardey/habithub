@@ -80,6 +80,13 @@ class HabitStore: ObservableObject {
         updateHabit(habit)
     }
     
+    func markHabitAsNotCompleted(_ habit: Habit) {
+        habit.isHabitCompleted = false
+        habit.completedDate = nil
+        print("habit \(habit.title) not completed")
+        updateHabit(habit)
+    }
+    
     func markDayAsCompleted(_ habit: Habit, date: Date) {
         habit.markDateCompleted(date: date)
         updateHabit(habit)
@@ -102,6 +109,10 @@ class HabitStore: ObservableObject {
         }
     }
     
+    func moveHabit(from source: IndexSet, to destination: Int) {
+        habits.move(fromOffsets: source, toOffset: destination)
+    }
+    
     func scheduleNotification(for habit: Habit, at date: Date) {
         
         let content = UNMutableNotificationContent()
@@ -116,8 +127,7 @@ class HabitStore: ObservableObject {
         dateComponents.hour = dateComponents.hour
         dateComponents.minute = dateComponents.minute
         
-        //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         let request = UNNotificationRequest(identifier: habit.id.uuidString, content: content, trigger: trigger)
         

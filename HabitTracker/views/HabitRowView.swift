@@ -14,7 +14,6 @@ struct HabitRow: View {
     
     var body: some View {
         HStack (alignment: .top) {
-            
             VStack(alignment: .leading,spacing: 5) {
                 Text(habit.title)
                     .font(.headline)
@@ -35,11 +34,17 @@ struct HabitRow: View {
                         ForEach(0..<lastNdays.count, id: \.self) { index in
                             let cell = lastNdays[index]
                             if cell == 1 {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
+//                                Image(systemName: "checkmark.circle.fill")
+//                                    .foregroundColor(.green)
+                                Circle()
+                                    .fill(Color.green)
+                                    .frame(width: 20, height: 20)
                             } else {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(Color.init(red: 0.7, green: 0, blue: 0.2).opacity(0.7))
+                                Circle()
+                                    .fill(Color.gray.opacity(0.5))
+                                    .frame(width: 20, height: 20)
+//                                Image(systemName: "xmark.circle.fill")
+//                                    .foregroundColor(.gray.opacity(0.5))
                             }
                         }
                     }
@@ -52,23 +57,23 @@ struct HabitRow: View {
                     }
                 }
             }.padding(.top,10)
-                .environment(\.font, Font.system(size: 16, weight: .light, design: .rounded))
+                .environment(\.font, Font.system(size: 16, weight: .light, design: .serif))
             
             Spacer()
             Spacer()
             
-            Button(action: {
-                // open AddHabit in a modal sheet
-                // pass the habit to edit
-                isAddHabitSheetPresented.toggle()
-            }) {
-                Image(systemName: "info.circle")
-                    .foregroundColor(.blue)
-                    .font(.subheadline)
-            }
-            .sheet(isPresented: $isAddHabitSheetPresented) {
-                EditHabit(habit: habit)
-                    .environmentObject(habitStore)
+            if !habit.isHabitCompleted{
+                Button(action: {
+                    isAddHabitSheetPresented.toggle()
+                }) {
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.blue)
+                        .font(.subheadline)
+                }
+                .sheet(isPresented: $isAddHabitSheetPresented) {
+                    EditHabit(habit: habit)
+                        .environmentObject(habitStore)
+                }
             }
         }
     }

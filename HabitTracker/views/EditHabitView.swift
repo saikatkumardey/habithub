@@ -24,35 +24,32 @@ struct EditHabit: View {
     var body: some View {
         
         NavigationStack{
-            VStack(alignment:.center,spacing: 30) {
+            VStack(spacing: 20) {
                 HStack {
                     Text("I will")
                         .foregroundColor(.primary)
                     Spacer()
                 }
-                TextField("Exercise for 10 mins every day", text: $habitTitle)
+                TextField("Exercise for 10 mins every day", text: $habitTitle, axis: .vertical)
+                    .padding()
+                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                     .focused($isTextFieldFocused)
                     .font(.system(size: 20))
                     .foregroundColor(.primary)
-//                    .onChange(of: habit.title) { newValue in
-//                        habitStore.updateHabit(habit)
-//                    }
                 HStack{
                     Text("every day")
                         .foregroundColor(.primary)
                     Spacer()
                 }
-                DatePicker("starting from", selection: $habit.startDate, displayedComponents: .date)
-                    .datePickerStyle(.automatic)
-                    .foregroundColor(.primary)
-//                    .onChange(of: habit.startDate) { newValue in
-//                        habitStore.updateHabit(habit)
-//                    }
+                DatePicker("starting from", selection: $habit.startDate,
+                           in: ...Date(),displayedComponents: .date)
+                .datePickerStyle(.automatic)
+                .foregroundColor(.primary)
+                
                 ReminderConfigurationView(reminderTime: $habit.reminderTime, isReminderEnabled: $habit.isReminderEnabled)
                     .foregroundColor(.primary)
-//                    .onChange(of: habit.reminderTime) { newValue in
-//                        habitStore.updateHabit(habit)
-//                    }
+                Spacer()
+                
             }
             .padding(20)
             .navigationBarItems(leading:
@@ -68,6 +65,9 @@ struct EditHabit: View {
                 isTextFieldFocused = true
             }
         }.environment(\.font, .system(size:30, weight: .light, design: .rounded))
+            .gesture(TapGesture().onEnded{
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            })
     }
 }
 

@@ -5,7 +5,7 @@ struct CurrentHabitsView: View{
     @State private var showingAddHabitSheet = false
     @State private var newHabitTitle = ""
     @State private var newHabitStartDate = Date()
-    @State private var newHabitReminderTime = Date()
+    @State private var newHabitReminderTime = Date().startOfDay.addingTimeInterval(8*60*60)
     @State private var newHabitReminderEnabled : Bool = false
     
     private var uncompletedHabits: [Habit] {
@@ -31,59 +31,62 @@ struct CurrentHabitsView: View{
     }
     
     var body: some View {
-        Group{
-            if uncompletedHabits.isEmpty {
-                //                    EmptyViewWithImageAndText(image: "cute_dog", text: "Please click on + to add a new habit.")
-                Spacer()
-                
-                Group{
-                    Text("Please ")
-                        .fontWeight(.ultraLight)
-                    +
-                    Text("add")
-                        .fontWeight(.bold)
-                        .foregroundColor(.green) +
-                    Text(" a new habit to get started.")
-                        .fontWeight(.ultraLight)
+        ZStack {
+
+            Group{
+                if uncompletedHabits.isEmpty {
+                    
+                    Spacer()
+                    
+                    Group{
+                        Text("Please ")
+                            .fontWeight(.ultraLight)
+                        +
+                        Text("add")
+                            .fontWeight(.bold)
+                            .foregroundColor(.green) +
+                        Text(" a new habit to get started.")
+                            .fontWeight(.ultraLight)
+                    }
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                    .padding(.top, 100)
+                    
+                    
+                    Spacer()
+                } else {
+                    HabitListView(habits: uncompletedHabits)
+                        .environmentObject(habitStore)
                 }
-                .font(.system(size: 40, weight: .bold, design: .rounded))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-                .padding(.top, 100)
-                
-                
-                Spacer()
-            } else {
-                HabitListView(habits: uncompletedHabits)
-                    .environmentObject(habitStore)
             }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing:
-                                Button(action: {
-            self.showingAddHabitSheet = true
-        }) {
-            Image(systemName: "plus")
-                .font(.system(size:20,weight: .light))
-                .foregroundColor(.white)
-                .padding(8)
-                .background(Circle().fill(Color.green))
-                .shadow(radius: 5)
-        }
-        )
-        .sheet(isPresented: $showingAddHabitSheet) {
-            AddHabit(newHabitTitle: $newHabitTitle,
-                     newHabitStartDate: $newHabitStartDate,
-                     newHabitReminderTime: $newHabitReminderTime,
-                     newHabitReminderEnabled: $newHabitReminderEnabled
-            ){
-                addHabit()
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                self.showingAddHabitSheet = true
+            }) {
+                Image(systemName: "plus")
+                    .font(.system(size:20,weight: .light))
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background(Circle().fill(Color.green))
+                    .shadow(radius: 5)
             }
-        }
-        .onAppear(perform: {
-            requestNotificationPermission()
-            registerNotificationCategory()
+            )
+            .sheet(isPresented: $showingAddHabitSheet) {
+                AddHabit(newHabitTitle: $newHabitTitle,
+                         newHabitStartDate: $newHabitStartDate,
+                         newHabitReminderTime: $newHabitReminderTime,
+                         newHabitReminderEnabled: $newHabitReminderEnabled
+                ){
+                    addHabit()
+                }
+            }
+            .onAppear(perform: {
+                requestNotificationPermission()
+                registerNotificationCategory()
         })
+        }
     }
     
     func addHabit() {
@@ -142,36 +145,20 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationView {
-                ZStack {
-                    // add a LinearGradient to the background
-                    //                    LinearGradient(gradient: Gradient(colors: [.white,.green,.white]),
-                    //                                   startPoint: .top, endPoint: .bottom)
-                    //                    .edgesIgnoringSafeArea(.all)
-                    
-                    CurrentHabitsView()
-                        .environmentObject(habitStore)
-                }
+                CurrentHabitsView()
+                    .environmentObject(habitStore)
             }
             .tabItem {
                 Label("Current", systemImage: "list.bullet")
             }
             NavigationView {
-                ZStack {
-                    // add a LinearGradient to the background
-                    //                    LinearGradient(gradient: Gradient(colors: [.white,.green,
-                    //                                                               .white]),
-                    //                                   startPoint: .top, endPoint: .bottom)
-                    //                    .edgesIgnoringSafeArea(.all)
-                    
-                    CompletedHabitsView()
-                        .environmentObject(habitStore)
-                }
+                CompletedHabitsView()
+                    .environmentObject(habitStore)
             }
             .tabItem {
                 Label("Completed", systemImage: "checkmark")
             }
         }
-//        .accentColor(.green)
     }
 }
 

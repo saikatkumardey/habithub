@@ -15,60 +15,68 @@ struct HabitDetailView: View {
     
     var body: some View {
         ScrollView{
-            VStack{
-                TextField("Habit title", text: $habit.title)
-                    .font(.system(size: 24, weight: .light, design: .serif))
-                    .padding(.bottom)
-                
+            VStack(alignment: .leading, spacing: 20){
+//                TextField("Habit title", text: $habit.title)
+//                    .font(.system(size: 24, weight: .light, design: .serif))
+//                    .padding(.bottom)
+                TextField("Habit title", text: $habit.title, axis: .vertical)
+                    .font(.system(size: 24, weight: .light, design: .rounded))
+                    .lineLimit(2)
+                Text("started on \(habit.startDate.formatted(date: .abbreviated, time: .omitted))")
+                    .font(.system(size: 12, weight: .light, design: .rounded))
+                    .foregroundColor(.secondary)
                 Divider()
-                
+                                
                 MultiDatePicker("Calendar",selection: $habit.completedDates, in: habit.startDate..<today)
-                    .frame(width: 300)
+//                    .frame(width: 300)
+                    .fontDesign(.rounded)
                     .tint(.green)
                     .onChange(of: habit.completedDates, perform: { value in
                         habitStore.updateHabit(habit)
                     })
+                    .padding(.vertical,20)
+                    .padding(.horizontal,20)
                 
                 Divider()
                 
-                // toggle for completing habit
+                let totalCompleted = habit.calculateTotalCompleted()
+                let currentStreak = habit.calculateStreak()
+                let longestStreak = habit.calculateLongestStreak()
                 
-                Toggle("Completed", isOn: $habit.isHabitCompleted)
-                    .toggleStyle(SwitchToggleStyle(tint: .green))
-                    .padding()
-                    .onChange(of: habit.isHabitCompleted) { value in
-                        if habit.isHabitCompleted {
-                            habit.completedDate = Date()
-                        } else {
-                            habit.completedDate = nil
-                        }
-                        habitStore.updateHabit(habit)
+
+                VStack(alignment: .center, spacing: 10){
+                    HStack(alignment:.top){
+                        Text("Total completed")
+                            .font(.system(size: 16, weight: .light, design: .monospaced))
+                        Spacer()
+                        Text("\(totalCompleted) \(totalCompleted == 1 ? "day" : "days")")
+                            .fontDesign(.monospaced)
                     }
-                
-                Divider()
-                
-                HStack {
-                    VStack(alignment: .leading) {
+                    
+                    HStack(alignment: .top) {
                         Text("Current Streak")
-                            .font(.system(size: 16, weight: .light, design: .serif))
-                        Text("\(habit.calculateStreak())")
-                            .font(.title)
+                            .font(.system(size: 16, weight: .light, design: .monospaced))
+                        Spacer()
+                        Text("\(currentStreak) \(currentStreak == 1 ? "day" : "days")")
+                            .fontDesign(.monospaced)
                     }
-                    Spacer()
-                    VStack(alignment: .leading) {
+                    HStack(alignment: .top) {
                         Text("Longest Streak")
-                            .font(.system(size: 16, weight: .light, design: .serif))
-                        Text("\(habit.calculateLongestStreak())")
-                            .font(.title)
+                            .font(.system(size: 16, weight: .light, design: .monospaced))
+                        Spacer()
+                        Text("\(longestStreak) \(longestStreak == 1 ? "day" : "days")")
+                            .fontDesign(.monospaced)
+                    
                     }
-                }.padding()
-                
+                }.padding(.top,50)                
             }
             .padding([.leading,.trailing],20)
             .padding(.vertical,10)
             .navigationBarItems(trailing: Button("Done") {
                 dismiss()
-            })
+            }
+                .font(.system(size: 30, weight: .light, design: .rounded))
+            )
         }
     }
 }
