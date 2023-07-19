@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditHabit: View {
+struct EditHabitView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var habitStore: HabitStore
@@ -41,8 +41,7 @@ struct EditHabit: View {
                         .foregroundColor(.primary)
                     Spacer()
                 }
-                DatePicker("starting from", selection: $habit.startDate,
-                           in: ...Date(),displayedComponents: .date)
+                DatePicker("starting from", selection: $habit.startDate,displayedComponents: .date)
                 .datePickerStyle(.automatic)
                 .foregroundColor(.primary)
                 
@@ -71,6 +70,9 @@ struct EditHabit: View {
     }
 }
 
-#Preview {
-    EditHabit(habit: Habit(title: "Exercise for 10 mins every day", completedDates: [], startDate: Date(), reminderTime: Date(), isReminderEnabled: true))
+// preview
+struct EditHabit_Previews: PreviewProvider {
+    static var previews: some View {
+            EditHabitView(habit: Habit(title: "Exercise for 10 mins every day", completedDates: [], startDate: Date(), reminderTime: Date(), isReminderEnabled: true))
+    }
 }

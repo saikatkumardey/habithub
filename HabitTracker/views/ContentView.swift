@@ -73,7 +73,7 @@ struct CurrentHabitsView: View{
                     .shadow(radius: 5)
             }
             )
-            .sheet(isPresented: $showingAddHabitSheet) {
+            .fullScreenCover(isPresented: $showingAddHabitSheet) {
                 AddHabit(newHabitTitle: $newHabitTitle,
                          newHabitStartDate: $newHabitStartDate,
                          newHabitReminderTime: $newHabitReminderTime,

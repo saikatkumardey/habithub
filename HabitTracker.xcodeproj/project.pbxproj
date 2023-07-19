@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A003AB42A640B58009E20E7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A003AB32A640B57009E20E7 /* Launch Screen.storyboard */; };
 		8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */; };
 		8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19514F2A593F2E00E33E2C /* HabitStore.swift */; };
 		8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515B2A5AF31200E33E2C /* HabitRowView.swift */; };
 		8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515D2A5AF38A00E33E2C /* HabitListView.swift */; };
 		8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951612A5AF9E300E33E2C /* EditHabitView.swift */; };
+		8A29F3632A63CCC40047DFF0 /* NumberCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */; };
 		8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */; };
 		8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC92A502F3F00C0A67C /* ContentView.swift */; };
 		8A72FCCC2A502F4100C0A67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A72FCCB2A502F4100C0A67C /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 		8A72FCF42A502F9800C0A67C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */; };
 		8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF52A5034C300C0A67C /* AddHabitView.swift */; };
 		8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */; };
+		8AAFB62F2A66FADF009BAC88 /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */; };
+		8AAFB6312A67026A009BAC88 /* ReminderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAFB6302A67026A009BAC88 /* ReminderSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,12 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A003AB32A640B57009E20E7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "views/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderConfigurationView.swift; sourceTree = "<group>"; };
 		8A19514F2A593F2E00E33E2C /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
 		8A19515B2A5AF31200E33E2C /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		8A19515D2A5AF38A00E33E2C /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		8A1951612A5AF9E300E33E2C /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		8A1951632A5B36BC00E33E2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCardView.swift; sourceTree = "<group>"; };
 		8A72FCC42A502F3F00C0A67C /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
 		8A72FCC92A502F3F00C0A67C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +69,8 @@
 		8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		8A72FCF52A5034C300C0A67C /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
+		8AAFB6302A67026A009BAC88 /* ReminderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,9 @@
 				8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */,
 				8A19515B2A5AF31200E33E2C /* HabitRowView.swift */,
 				8A19515D2A5AF38A00E33E2C /* HabitListView.swift */,
+				8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */,
+				8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */,
+				8AAFB6302A67026A009BAC88 /* ReminderSelectionView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -127,6 +138,7 @@
 		8A72FCC62A502F3F00C0A67C /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
+				8A003AB32A640B57009E20E7 /* Launch Screen.storyboard */,
 				8A1951632A5B36BC00E33E2C /* Info.plist */,
 				8A1951522A593FE200E33E2C /* views */,
 				8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */,
@@ -272,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A003AB42A640B58009E20E7 /* Launch Screen.storyboard in Resources */,
 				8A72FCCF2A502F4100C0A67C /* Preview Assets.xcassets in Resources */,
 				8A72FCCC2A502F4100C0A67C /* Assets.xcassets in Resources */,
 			);
@@ -305,9 +318,12 @@
 				8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */,
 				8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */,
 				8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */,
+				8AAFB6312A67026A009BAC88 /* ReminderSelectionView.swift in Sources */,
 				8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */,
 				8A72FCF42A502F9800C0A67C /* HabitDetailView.swift in Sources */,
+				8AAFB62F2A66FADF009BAC88 /* DateSelectionView.swift in Sources */,
 				8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */,
+				8A29F3632A63CCC40047DFF0 /* NumberCardView.swift in Sources */,
 				8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,19 +482,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = B8JD4KN6R9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Indie Habits";
+				INFOPLIST_KEY_CFBundleDisplayName = HabitHub;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -503,19 +520,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = B8JD4KN6R9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Indie Habits";
+				INFOPLIST_KEY_CFBundleDisplayName = HabitHub;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

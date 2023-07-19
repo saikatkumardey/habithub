@@ -37,26 +37,22 @@ struct AddHabit: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(alignment:.leading, spacing: 20) {
                 HStack {
                     Text("I will")
                     Spacer()
                 }
-                TextField("Exercise for 10 mins every day", text: $newHabitTitle, axis: .vertical)
+                TextField("Walk 10k steps", text: $newHabitTitle, axis: .vertical)
                     .lineLimit(2)
                     .focused($isTextFieldFocused)
                     .font(.system(size: 20))
-                    .padding()
                 HStack{
                     Text("every day")
                     Spacer()
                 }
-                DatePicker("starting from", selection: $newHabitStartDate, in: ...Date(), displayedComponents: .date
-                           
-                )
-                .datePickerStyle(.automatic)
+                DateSelectionView(title: "Started on",selectedDate: $newHabitStartDate)
                 ReminderConfigurationView(reminderTime: $newHabitReminderTime, isReminderEnabled: $newHabitReminderEnabled)
-                Spacer()
+                
             }
             .padding()
             .padding(.top,20)
@@ -72,7 +68,7 @@ struct AddHabit: View {
                 isTextFieldFocused = true
             }
             
-        }.environment(\.font, .system(size:30, weight: .light, design: .rounded))
+        }.environment(\.font, .system(size:24, weight: .light, design: .rounded))
         .gesture(TapGesture().onEnded{
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         })

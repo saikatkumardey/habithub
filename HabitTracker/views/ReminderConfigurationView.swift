@@ -28,23 +28,25 @@ struct ReminderConfigurationView: View {
     }
     
     var body: some View {
-        VStack(spacing:10) {
-            HStack(alignment: .center){
-                VStack(alignment:.leading){
-                    Text("Remind me")
-                    if isReminderEnabled {
-                        Text(formattedReminderTime)
-                            .foregroundColor(.secondary)
-                            .font(.caption)
+        HStack{
+            Text("Reminder")
+               
+            Toggle("", isOn: $isReminderEnabled)
+                .frame(width: 60)
+                .foregroundColor(.primary)
+                .onChange(of: isReminderEnabled) { value in
+                    if !value {
+                        reminderTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: reminderTime)!
                     }
                 }
-                Toggle("", isOn: $isReminderEnabled)
-            }
+            
+            
             if isReminderEnabled {
-                DatePicker("Time",
+                DatePicker("",
                            selection: $reminderTime,
                            displayedComponents: .hourAndMinute)
                 .datePickerStyle(.compact)
+                .labelsHidden()
                 .onChange(of: reminderTime) { value in
                     formattedReminderTime = timeFormatter.string(from: value)
                 }

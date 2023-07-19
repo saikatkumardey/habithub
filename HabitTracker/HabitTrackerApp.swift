@@ -17,12 +17,12 @@ struct HabitTrackerApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(habitStore)
-                .font(.system(.body, design: .serif))
+                .font(.system(.body, design: .rounded))
                 .onAppear(perform: {
                     UNUserNotificationCenter.current().delegate = notificationDelegate
                     notificationDelegate.habitStore = habitStore
                 })
-                .tint(.green)
+//                .tint(.green)
         }
     }
 }

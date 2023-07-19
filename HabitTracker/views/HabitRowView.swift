@@ -11,77 +11,103 @@ struct HabitRow: View {
     @EnvironmentObject var habitStore: HabitStore
     @ObservedObject var habit: Habit
     @State private var isAddHabitSheetPresented = false
+    @State private var lastNdays = [Int]()
     
     var body: some View {
-        HStack (alignment: .top) {
-            VStack(alignment: .leading,spacing: 5) {
-                Text(habit.title)
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                if !habit.isHabitCompleted{
-                    Text("Current streak: \(habit.calculateStreak()) days")
-                        .font(.caption)
-                        .foregroundColor(.primary)
-                    Text("Longest streak: \(habit.calculateLongestStreak()) days")
-                        .font(.caption)
-                        .foregroundColor(.primary)
-                    // last 7 days
-                    let lastNdays = habit.lastNdayCells(n: 7)
+        ZStack(alignment: .topLeading){
+            HStack {
+                VStack(alignment: .leading,spacing: 5) {
+                    HStack(alignment: .top) {
+                        Text(habit.title)
+                            .font(.system(size: 18))
+                            .fontDesign(.rounded)
+                            .fontWeight(.light)
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                    }
                     
-                    
-                    HStack {
+                    HStack{
                         ForEach(0..<lastNdays.count, id: \.self) { index in
                             let cell = lastNdays[index]
                             if cell == 1 {
-//                                Image(systemName: "checkmark.circle.fill")
-//                                    .foregroundColor(.green)
                                 Circle()
                                     .fill(Color.green)
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 10, height: 10)
                             } else {
                                 Circle()
-                                    .fill(Color.gray.opacity(0.5))
-                                    .frame(width: 20, height: 20)
-//                                Image(systemName: "xmark.circle.fill")
-//                                    .foregroundColor(.gray.opacity(0.5))
+                                    .fill(Color.gray)
+                                    .frame(width: 10, height: 10)
                             }
                         }
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            ZStack{
+                                Circle()
+                                    .fill(.pink)
+                                    .frame(width: 30, height: 30)
+                                Text("\(habit.calculateTotalCompleted())")
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                            }
+                            ZStack{
+                                Circle()
+                                    .fill(.green)
+                                    .frame(width: 30, height: 30)
+                                Text("\(habit.calculateStreak())")
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                            }
+                            ZStack{
+                                Circle()
+                                    .fill(.blue)
+                                    .frame(width: 30, height: 30)
+                                Text("\(habit.calculateLongestStreak())")
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        Spacer()
                     }
-                } else {
-                    // completed on date
-                    if habit.completedDate != nil {
-                        Text("Completed on \(habit.completedDate!.formatted(date: .abbreviated, time: .omitted))")
-                            .font(.subheadline)
-                            .foregroundColor(.primary)
-                    }
-                }
-            }.padding(.top,10)
-                .environment(\.font, Font.system(size: 16, weight: .light, design: .serif))
-            
-            Spacer()
-            Spacer()
-            
-            if !habit.isHabitCompleted{
-                Button(action: {
-                    isAddHabitSheetPresented.toggle()
-                }) {
-                    Image(systemName: "info.circle")
-                        .foregroundColor(.blue)
-                        .font(.subheadline)
-                }
-                .sheet(isPresented: $isAddHabitSheetPresented) {
-                    EditHabit(habit: habit)
-                        .environmentObject(habitStore)
-                }
+                    .padding(.vertical,10)
+                    .onAppear(perform: {
+                        lastNdays = habit.lastNdayCells(n: 7)
+                    })
+                    .onChange(of: habit.completedDates, perform: { value in
+                        lastNdays = habit.lastNdayCells(n: 7)
+                    })
+                }.padding(.top,10)
+                    .environment(\.font, Font.system(size: 16, weight: .light, design: .rounded))
+                
+                Spacer()
+                
             }
+//            HStack(alignment: .top){
+//                Spacer()
+//                Button(action: {
+//                    isAddHabitSheetPresented.toggle()
+//                }) {
+//                    Image(systemName: "info.circle")
+//                        .foregroundColor(.blue)
+//                        .font(.subheadline)
+//                }
+//                .sheet(isPresented: $isAddHabitSheetPresented) {
+//                    EditHabitView(habit: habit)
+//                        .environmentObject(habitStore)
+//                }
+//            }
         }
-    }
         
+    }
+    
 }
 
 
-#Preview {
-    HabitRow(habit: Habit(title: "Drink water", completedDates: [], startDate: Date(), reminderTime: Date(), isReminderEnabled: false))
-        .padding()
+struct HabitRow_Previews: PreviewProvider {
+    static var previews: some View {
+        HabitRow(habit: Habit(title: "Drink water", completedDates: [], startDate: Date(), reminderTime: Date(), isReminderEnabled: false))
+            .padding(5)
+    }
 }

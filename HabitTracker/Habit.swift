@@ -27,6 +27,7 @@ class Habit: ObservableObject, Identifiable, Codable {
     @Published var reminderTime: Date
     @Published var reminderFrequency: ReminderFrequency?
     @Published var isReminderEnabled: Bool = false
+    @Published var lastUpdated: Date
     
     init(title: String, completedDates: Set<DateComponents>, startDate: Date = Date(), isCompleted: Bool = false, completedDate: Date? = nil, reminderTime: Date, reminderFrequency: ReminderFrequency? = nil, isReminderEnabled: Bool = false) {
         self.title = title
@@ -37,11 +38,17 @@ class Habit: ObservableObject, Identifiable, Codable {
         self.reminderTime = reminderTime
         self.reminderFrequency = reminderFrequency
         self.isReminderEnabled = isReminderEnabled
+        self.lastUpdated = Date()
+        
+        Timer.scheduledTimer(withTimeInterval: 86400, repeats: true) { timer in
+            self.lastUpdated = Date()
+        }
         
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, title, completedDates, startDate, isHabitCompleted, completedDate, reminderTime, reminderFrequency, isReminderEnabled
+        case id, title, completedDates, startDate, isHabitCompleted, completedDate, reminderTime, reminderFrequency, isReminderEnabled, lastUpdated
+    
     }
     
     required init(from decoder: Decoder) throws {
@@ -55,6 +62,7 @@ class Habit: ObservableObject, Identifiable, Codable {
         reminderTime = try container.decode(Date.self, forKey: .reminderTime)
         reminderFrequency = try container.decode(ReminderFrequency?.self, forKey: .reminderFrequency)
         isReminderEnabled = try container.decode(Bool.self, forKey: .isReminderEnabled)
+        lastUpdated = Date()
     }
     
     func encode(to encoder: Encoder) throws {
@@ -68,6 +76,7 @@ class Habit: ObservableObject, Identifiable, Codable {
         try container.encode(reminderTime, forKey: .reminderTime)
         try container.encode(reminderFrequency, forKey: .reminderFrequency)
         try container.encode(isReminderEnabled, forKey: .isReminderEnabled)
+        try container.encode(lastUpdated, forKey: .lastUpdated)
     }
     
     func completedDatesSet() -> Set<Date> {
@@ -141,11 +150,13 @@ class Habit: ObservableObject, Identifiable, Codable {
         if isCompleted(on: noTimeDate) {
             return
         }
+        lastUpdated = Date()
         completedDates.insert(Calendar.current.dateComponents([.year, .month, .day], from: noTimeDate))
     }
     
     func toggleCompletion() {
         isHabitCompleted.toggle()
+        lastUpdated = Date()
         if isHabitCompleted {
             completedDate = Date()
         } else {
