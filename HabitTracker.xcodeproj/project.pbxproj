@@ -14,6 +14,7 @@
 		8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515D2A5AF38A00E33E2C /* HabitListView.swift */; };
 		8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951612A5AF9E300E33E2C /* EditHabitView.swift */; };
 		8A29F3632A63CCC40047DFF0 /* NumberCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */; };
+		8A7076CE2A6994430017FCA4 /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7076CD2A6994430017FCA4 /* HabitDetailView.swift */; };
 		8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */; };
 		8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC92A502F3F00C0A67C /* ContentView.swift */; };
 		8A72FCCC2A502F4100C0A67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A72FCCB2A502F4100C0A67C /* Assets.xcassets */; };
@@ -22,7 +23,6 @@
 		8A72FCE32A502F4100C0A67C /* HabitTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCE22A502F4100C0A67C /* HabitTrackerUITests.swift */; };
 		8A72FCE52A502F4100C0A67C /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCE42A502F4100C0A67C /* HabitTrackerUITestsLaunchTests.swift */; };
 		8A72FCF22A502F5800C0A67C /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF12A502F5800C0A67C /* Habit.swift */; };
-		8A72FCF42A502F9800C0A67C /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */; };
 		8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF52A5034C300C0A67C /* AddHabitView.swift */; };
 		8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */; };
 		8AAFB62F2A66FADF009BAC88 /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */; };
@@ -55,6 +55,7 @@
 		8A1951612A5AF9E300E33E2C /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		8A1951632A5B36BC00E33E2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCardView.swift; sourceTree = "<group>"; };
+		8A7076CD2A6994430017FCA4 /* HabitDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HabitDetailView.swift; path = ../../../../../.Trash/HabitDetailView.swift; sourceTree = "<group>"; };
 		8A72FCC42A502F3F00C0A67C /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
 		8A72FCC92A502F3F00C0A67C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		8A72FCE22A502F4100C0A67C /* HabitTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITests.swift; sourceTree = "<group>"; };
 		8A72FCE42A502F4100C0A67C /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8A72FCF12A502F5800C0A67C /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
-		8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		8A72FCF52A5034C300C0A67C /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			children = (
 				8A72FCF52A5034C300C0A67C /* AddHabitView.swift */,
 				8A1951612A5AF9E300E33E2C /* EditHabitView.swift */,
-				8A72FCF32A502F9800C0A67C /* HabitDetailView.swift */,
+				8A7076CD2A6994430017FCA4 /* HabitDetailView.swift */,
 				8A72FCC92A502F3F00C0A67C /* ContentView.swift */,
 				8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */,
 				8A19515B2A5AF31200E33E2C /* HabitRowView.swift */,
@@ -311,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7076CE2A6994430017FCA4 /* HabitDetailView.swift in Sources */,
 				8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */,
 				8A72FCF22A502F5800C0A67C /* Habit.swift in Sources */,
 				8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */,
@@ -320,7 +321,6 @@
 				8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */,
 				8AAFB6312A67026A009BAC88 /* ReminderSelectionView.swift in Sources */,
 				8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */,
-				8A72FCF42A502F9800C0A67C /* HabitDetailView.swift in Sources */,
 				8AAFB62F2A66FADF009BAC88 /* DateSelectionView.swift in Sources */,
 				8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */,
 				8A29F3632A63CCC40047DFF0 /* NumberCardView.swift in Sources */,

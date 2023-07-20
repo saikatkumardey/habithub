@@ -61,7 +61,12 @@ struct CurrentHabitsView: View{
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing:
+            .navigationBarItems(
+                leading: Text("It's \(Date().formatted(date: .long, time: .omitted)).")
+                    .font(.system(size: 20, design: .rounded))
+                    .foregroundColor(.gray)
+                ,
+                trailing:
                                     Button(action: {
                 self.showingAddHabitSheet = true
             }) {
@@ -73,7 +78,7 @@ struct CurrentHabitsView: View{
                     .shadow(radius: 5)
             }
             )
-            .fullScreenCover(isPresented: $showingAddHabitSheet) {
+            .sheet(isPresented: $showingAddHabitSheet) {
                 AddHabit(newHabitTitle: $newHabitTitle,
                          newHabitStartDate: $newHabitStartDate,
                          newHabitReminderTime: $newHabitReminderTime,
@@ -159,6 +164,7 @@ struct ContentView: View {
                 Label("Completed", systemImage: "checkmark")
             }
         }
+        .background(.clear)
     }
 }
 

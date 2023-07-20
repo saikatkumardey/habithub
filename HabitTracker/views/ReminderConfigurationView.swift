@@ -13,6 +13,8 @@ struct ReminderConfigurationView: View {
     @Binding var reminderTime: Date
     @Binding private var isReminderEnabled: Bool
     @State private var formattedReminderTime: String
+    var title: String = "Reminder"
+    
     
     let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -21,15 +23,16 @@ struct ReminderConfigurationView: View {
         return formatter
     }()
     
-    init(reminderTime: Binding<Date>, isReminderEnabled: Binding<Bool>) {
+    init(reminderTime: Binding<Date>, isReminderEnabled: Binding<Bool>, title: String = "Reminder") {
         self._reminderTime = reminderTime
         self._isReminderEnabled = isReminderEnabled
         self._formattedReminderTime = State(initialValue: timeFormatter.string(from: reminderTime.wrappedValue))
+        self.title = title
     }
     
     var body: some View {
         HStack{
-            Text("Reminder")
+            Text(title)
                
             Toggle("", isOn: $isReminderEnabled)
                 .frame(width: 60)

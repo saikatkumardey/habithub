@@ -15,58 +15,61 @@ struct HabitListView: View {
     var habits: [Habit]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
-                    ForEach(habits, id: \.id) { habit in
-                        ZStack(alignment: .bottom){
-                            Button(action: {
-                                self.selectedHabit = habit
-                                self.showingHabitDetails = true
-                            }) {
-                                HStack(alignment: .center){
-                                    HabitRow(habit: habit)
-                                        .environmentObject(habitStore)
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.gray)
-                                }
+                ForEach(habits, id: \.id) { habit in
+                    ZStack(alignment: .bottom){
+                        Button(action: {
+                            self.selectedHabit = habit
+                            self.showingHabitDetails = true
+                        }) {
+                            HStack(alignment: .center){
+                                HabitRow(habit: habit)
+                                    .environmentObject(habitStore)
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
                             }
-//                            .buttonStyle(.bordered)
-                            .padding(.vertical, 10)
-                            .swipeActions {
-                                Button(action: {
-                                    if habit.isHabitCompleted {
-                                        habitStore.markHabitAsNotCompleted(habit)
-                                    } else {
-                                        habitStore.markHabitAsCompleted(habit)
-                                    }
-                                }) {
-                                    if habit.isHabitCompleted {
-                                        Label("Not Complete", systemImage: "xmark.circle.fill")
-                                            .background(.gray)
-                                    } else {
-                                        Label("Complete", systemImage: "checkmark.circle")
-                                    }
-                                }
-                                
-                                Button(action: {
-                                    deleteHabit(at: habit)
-                                }) {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                                .tint(.red)
-                            }
-                            Spacer()
                         }
+                        //                            .buttonStyle(.bordered)
+                        .padding(.vertical, 10)
+                        .swipeActions {
+                            Button(action: {
+                                if habit.isHabitCompleted {
+                                    habitStore.markHabitAsNotCompleted(habit)
+                                } else {
+                                    habitStore.markHabitAsCompleted(habit)
+                                }
+                            }) {
+                                if habit.isHabitCompleted {
+                                    Label("Not Complete", systemImage: "xmark.circle.fill")
+                                        .labelStyle(.titleAndIcon)
+                                } else {
+                                    Label("Complete", systemImage: "checkmark.circle")
+                                        .labelStyle(.titleAndIcon)
+                                }
+                            }
+                            .tint(.green)
+                            
+                            Button(action: {
+                                deleteHabit(at: habit)
+                            }) {
+                                Label("Delete", systemImage: "trash")
+                                    .labelStyle(.titleAndIcon)
+                            }
+                            .tint(.red)
+                        }
+                        Spacer()
                     }
                 }
-                .listStyle(.plain)
-                .shadow(radius: 10)
-                .fullScreenCover(item: $selectedHabit) { habit in
-                    NavigationView {
-                        HabitDetailView(habit: habit)
-                            .environmentObject(habitStore)
-                    }
+            }
+            .listStyle(.plain)
+//            .shadow(radius: 5)
+            .fullScreenCover(item: $selectedHabit) { habit in
+                NavigationView {
+                    HabitDetailView(habit: habit)
+                        .environmentObject(habitStore)
                 }
+            }
             .padding(.vertical,10)
         }
     }
@@ -89,5 +92,5 @@ struct HabitListView_Previews: PreviewProvider {
     static var previews: some View {
         HabitListView(habits: HabitStore().habits)
             .environmentObject(HabitStore())
-    }    
+    }
 }

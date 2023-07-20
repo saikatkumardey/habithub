@@ -52,6 +52,9 @@ class HabitStore: ObservableObject {
         } else {
             cancelNotification(for: habit)
         }
+        if habit.isCompleted(on: Date()) {
+            cancelNotification(for: habit)
+        }
     }
     
     func getHabit(by id: UUID) -> Habit? {
@@ -78,6 +81,7 @@ class HabitStore: ObservableObject {
         habit.completedDate = Date()
         print("habit \(habit.title) completed on \(habit.completedDate ?? Date())")
         updateHabit(habit)
+        cancelNotification(for: habit)
     }
     
     func markHabitAsNotCompleted(_ habit: Habit) {
@@ -90,6 +94,7 @@ class HabitStore: ObservableObject {
     func markDayAsCompleted(_ habit: Habit, date: Date) {
         habit.markDateCompleted(date: date)
         updateHabit(habit)
+        cancelNotification(for: habit)
     }
     
     

@@ -23,7 +23,7 @@ struct NumberCard: View {
 
             VStack{
                Text(text)
-                    .font(.system(size: 16, weight: .light, design: .rounded))
+                    .font(.system(size: 18, weight: .light, design: .rounded))
                     .foregroundColor(.white)
                 Text("\(number)")
                     .font(.system(size: 100, weight: .light, design: .rounded))
@@ -31,7 +31,6 @@ struct NumberCard: View {
             }
 
         }
-        .padding(.horizontal,5)
         .frame(width:180.0,height:180.0)
 
     }

@@ -38,20 +38,17 @@ struct AddHabit: View {
     var body: some View {
         NavigationView {
             VStack(alignment:.leading, spacing: 20) {
-                HStack {
-                    Text("I will")
-                    Spacer()
-                }
-                TextField("Walk 10k steps", text: $newHabitTitle, axis: .vertical)
+                Spacer()
+                TextField("What do you want to get better at?", text: $newHabitTitle, axis: .vertical)
                     .lineLimit(2)
                     .focused($isTextFieldFocused)
-                    .font(.system(size: 20))
-                HStack{
-                    Text("every day")
-                    Spacer()
-                }
-                DateSelectionView(title: "Started on",selectedDate: $newHabitStartDate)
-                ReminderConfigurationView(reminderTime: $newHabitReminderTime, isReminderEnabled: $newHabitReminderEnabled)
+                    .font(.system(size: 20, weight: .light, design: .rounded))
+                    .fontWeight(.light)
+                DateSelectionView(title: "Starting",selectedDate: $newHabitStartDate)
+                    .font(.system(size: 20, weight: .light, design: .rounded))
+                ReminderConfigurationView(reminderTime: $newHabitReminderTime, isReminderEnabled: $newHabitReminderEnabled, title: "Remind me")
+                    .font(.system(size: 20, weight: .light, design: .rounded))
+                Spacer()
                 
             }
             .padding()
@@ -68,7 +65,7 @@ struct AddHabit: View {
                 isTextFieldFocused = true
             }
             
-        }.environment(\.font, .system(size:24, weight: .light, design: .rounded))
+        }
         .gesture(TapGesture().onEnded{
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         })
