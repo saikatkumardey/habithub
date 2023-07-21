@@ -61,16 +61,23 @@ struct HabitListView: View {
                         Spacer()
                     }
                 }
+                .listRowSeparator(.hidden)
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.green.opacity(0.1))
+                        .shadow(color:.white.opacity(0.1), radius: 10)
+                        .padding(.vertical,10)
+                )
             }
             .listStyle(.plain)
-//            .shadow(radius: 5)
+            .shadow(color:.gray.opacity(0.7), radius: 10)
             .fullScreenCover(item: $selectedHabit) { habit in
                 NavigationView {
                     HabitDetailView(habit: habit)
                         .environmentObject(habitStore)
                 }
             }
-            .padding(.vertical,10)
+            .padding()
         }
     }
     

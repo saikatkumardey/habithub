@@ -42,33 +42,6 @@ struct HabitRow: View {
                             }
                         }
                         Spacer()
-//                        HStack{
-//                            Spacer()
-//                            ZStack{
-//                                Circle()
-//                                    .fill(.pink)
-//                                    .frame(width: 30, height: 30)
-//                                Text("\(habit.calculateTotalCompleted())")
-//                                    .font(.caption)
-//                                    .foregroundColor(.white)
-//                            }
-//                            ZStack{
-//                                Circle()
-//                                    .fill(.green)
-//                                    .frame(width: 30, height: 30)
-//                                Text("\(habit.calculateStreak())")
-//                                    .font(.caption)
-//                                    .foregroundColor(.white)
-//                            }
-//                            ZStack{
-//                                Circle()
-//                                    .fill(.blue)
-//                                    .frame(width: 30, height: 30)
-//                                Text("\(habit.calculateLongestStreak())")
-//                                    .font(.caption)
-//                                    .foregroundColor(.white)
-//                            }
-//                        }
                         Spacer()
                     }
                     .padding(.vertical,10)
@@ -83,20 +56,6 @@ struct HabitRow: View {
                 Spacer()
                 
             }
-//            HStack(alignment: .top){
-//                Spacer()
-//                Button(action: {
-//                    isAddHabitSheetPresented.toggle()
-//                }) {
-//                    Image(systemName: "info.circle")
-//                        .foregroundColor(.blue)
-//                        .font(.subheadline)
-//                }
-//                .sheet(isPresented: $isAddHabitSheetPresented) {
-//                    EditHabitView(habit: habit)
-//                        .environmentObject(habitStore)
-//                }
-//            }
         }
         
     }
