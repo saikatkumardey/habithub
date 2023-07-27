@@ -23,10 +23,13 @@ struct HabitRow: View {
                             .fontDesign(.rounded)
                             .fontWeight(.light)
                             .foregroundColor(.primary)
-                        
                         Spacer()
-                        
                     }
+                    
+                    Text(habit.reminderTime.formatted(date: .omitted, time: .shortened))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.top,5)
                     
                     HStack{
                         ForEach(0..<lastNdays.count, id: \.self) { index in
@@ -57,7 +60,6 @@ struct HabitRow: View {
                 
             }
         }
-        
     }
     
 }

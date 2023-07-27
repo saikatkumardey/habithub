@@ -2,11 +2,6 @@ import SwiftUI
 
 struct CurrentHabitsView: View{
     @EnvironmentObject var habitStore: HabitStore
-    @State private var showingAddHabitSheet = false
-    @State private var newHabitTitle = ""
-    @State private var newHabitStartDate = Date()
-    @State private var newHabitReminderTime = Date().startOfDay.addingTimeInterval(8*60*60)
-    @State private var newHabitReminderEnabled : Bool = false
     
     private var uncompletedHabits: [Habit] {
         habitStore.habits.filter { !$0.isHabitCompleted }
@@ -31,84 +26,19 @@ struct CurrentHabitsView: View{
     }
     
     var body: some View {
-        ZStack {
-
-            Group{
-                if uncompletedHabits.isEmpty {
-                    
-                    Spacer()
-                    
-                    Group{
-                        Text("Please ")
-                            .fontWeight(.ultraLight)
-                        +
-                        Text("add")
-                            .fontWeight(.bold)
-                            .foregroundColor(.green) +
-                        Text(" a new habit to get started.")
-                            .fontWeight(.ultraLight)
-                    }
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                    .padding(.top, 100)
-                    
-                    
-                    Spacer()
-                } else {
-                    HabitListView(habits: uncompletedHabits)
-                        .environmentObject(habitStore)
-                }
-            }
+        
+        HabitListView(habits: uncompletedHabits, isCompleted: false)
+            .environmentObject(habitStore)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Text("It's \(Date().formatted(date: .long, time: .omitted)).")
                     .font(.system(size: 20, design: .rounded))
                     .foregroundColor(.gray)
-                ,
-                trailing:
-                                    Button(action: {
-                self.showingAddHabitSheet = true
-            }) {
-                Image(systemName: "plus")
-                    .font(.system(size:20,weight: .light))
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Circle().fill(Color.green))
-                    .shadow(radius: 5)
-            }
             )
-            .sheet(isPresented: $showingAddHabitSheet) {
-                AddHabit(newHabitTitle: $newHabitTitle,
-                         newHabitStartDate: $newHabitStartDate,
-                         newHabitReminderTime: $newHabitReminderTime,
-                         newHabitReminderEnabled: $newHabitReminderEnabled
-                ){
-                    addHabit()
-                }
-            }
             .onAppear(perform: {
                 requestNotificationPermission()
                 registerNotificationCategory()
-        })
-        }
-    }
-    
-    func addHabit() {
-        let newHabit = Habit(title: newHabitTitle,
-                             completedDates: [],
-                             startDate: newHabitStartDate,
-                             reminderTime: newHabitReminderTime,
-                             isReminderEnabled: newHabitReminderEnabled
-        )
-        
-        print("Adding new habit: \(newHabit.title)")
-        habitStore.addHabit(newHabit)
-        habitStore.listHabits()
-        if newHabitReminderEnabled {
-            habitStore.scheduleNotification(for: newHabit, at: newHabitReminderTime)
-        }
-        newHabitTitle = ""
+            })
     }
 }
 
@@ -123,21 +53,21 @@ struct CompletedHabitsView: View {
         
         Group{
             if completedHabits.isEmpty {
-                Spacer()
+//                Spacer()
                 Text("No habits completed yet.")
                     .font(.system(size: 40, weight: .ultraLight, design: .rounded))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                     .padding(.top, 100)
-                Spacer()
+//                Spacer()
             }
             else{
-                HabitListView(habits: completedHabits)
+                HabitListView(habits: completedHabits, isCompleted: true)
                     .environmentObject(habitStore)
             }
         }
-        //        .navigationBarTitle("Completed")
-        //        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitle("Completed Habits")
+        .navigationBarTitleDisplayMode(.large)
         .navigationBarBackButtonHidden()
     }
 }
@@ -154,14 +84,14 @@ struct ContentView: View {
                     .environmentObject(habitStore)
             }
             .tabItem {
-                Label("Current", systemImage: "list.bullet")
+                Label("Current", systemImage: "list.bullet.circle")
             }
             NavigationView {
                 CompletedHabitsView()
                     .environmentObject(habitStore)
             }
             .tabItem {
-                Label("Completed", systemImage: "checkmark")
+                Label("Completed", systemImage: "checkmark.circle")
             }
         }
         .background(.clear)

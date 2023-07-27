@@ -11,28 +11,32 @@ struct NumberCard: View {
     let number: Int
     let text: String
     var fillColor: Color = .green
-    
+    var iconColor: Color = .secondary
+    let icon: String
     
     var body: some View {
         ZStack {
             
             RoundedRectangle(cornerRadius: 10)
-                .fill(fillColor.opacity(0.8))
-                .shadow(color: .gray, radius: 5)
-                .foregroundColor(.clear)
+                .fill(fillColor)
+                .shadow(color:.primary.opacity(0.3), radius: 20)
 
             VStack{
-               Text(text)
-                    .font(.system(size: 18, weight: .light, design: .rounded))
-                    .foregroundColor(.white)
+                HStack{
+                    Image(systemName: icon)
+                        .foregroundColor(iconColor)
+                        .font(.title)
+                    Text(text)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.top,10)
                 Text("\(number)")
-                    .font(.system(size: 100, weight: .light, design: .rounded))
-                    .foregroundColor(.white)
+                    .font(.system(size: 100, weight: .bold, design: .rounded))
+                    .foregroundColor(.primary)
+                    .shadow(color:.white.opacity(0.7), radius: 3)
             }
-
         }
-        .frame(width:180.0,height:180.0)
-
     }
 }
 
@@ -41,12 +45,12 @@ struct NumberCard_Previews: PreviewProvider {
     static var previews: some View {
             VStack{
                 HStack{
-                    NumberCard(number: 25, text: "Total Days", fillColor: .blue)
-                    NumberCard(number: 15, text: "Total completed")
+                    NumberCard(number: 25, text: "Total Days", fillColor: .blue, icon: "checkmark.circle")
+                    NumberCard(number: 15, text: "Total completed", fillColor: .red, icon: "xmark.circle.fill")
                 }
                 HStack{
-                    NumberCard(number: 15, text: "Total Days")
-                    NumberCard(number: 25, text: "Total completed")
+                    NumberCard(number: 15, text: "Total Days", fillColor: .blue, icon: "checkmark.circle")
+                    NumberCard(number: 25, text: "Total completed", fillColor: .red, icon: "xmark.circle.fill")
                 }
         }
     }

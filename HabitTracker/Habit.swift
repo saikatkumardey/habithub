@@ -18,18 +18,18 @@ enum ReminderFrequency: String, Codable {
 class Habit: ObservableObject, Identifiable, Codable {
     
     @Published var id: UUID = UUID()
-    @Published var title: String
-    @Published var completedDates: Set<DateComponents>
+    @Published var title: String = ""
+    @Published var completedDates: Set<DateComponents> = []
     @Published var maxStreak: Int = 0
     @Published var startDate: Date = Date()
     @Published var isHabitCompleted: Bool = false
-    @Published var completedDate: Date?
-    @Published var reminderTime: Date
-    @Published var reminderFrequency: ReminderFrequency?
+    @Published var completedDate: Date? = nil
+    @Published var reminderTime: Date = Date().startOfDay.addingTimeInterval(8*60*60)
+    @Published var reminderFrequency: ReminderFrequency? = nil
     @Published var isReminderEnabled: Bool = false
-    @Published var lastUpdated: Date
+    @Published var lastUpdated: Date = Date()
     
-    init(title: String, completedDates: Set<DateComponents>, startDate: Date = Date(), isCompleted: Bool = false, completedDate: Date? = nil, reminderTime: Date, reminderFrequency: ReminderFrequency? = nil, isReminderEnabled: Bool = false) {
+    init(title: String="", completedDates: Set<DateComponents>=[], startDate: Date = Date(), isCompleted: Bool = false, completedDate: Date? = nil, reminderTime: Date, reminderFrequency: ReminderFrequency? = nil, isReminderEnabled: Bool = false) {
         self.title = title
         self.completedDates = completedDates
         self.startDate = startDate
@@ -39,11 +39,6 @@ class Habit: ObservableObject, Identifiable, Codable {
         self.reminderFrequency = reminderFrequency
         self.isReminderEnabled = isReminderEnabled
         self.lastUpdated = Date()
-        
-        Timer.scheduledTimer(withTimeInterval: 86400, repeats: true) { timer in
-            self.lastUpdated = Date()
-        }
-        
     }
     
     enum CodingKeys: String, CodingKey {

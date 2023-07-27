@@ -42,6 +42,7 @@ struct ReminderConfigurationView: View {
                         reminderTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: reminderTime)!
                     }
                 }
+                .buttonStyle(.borderless)
             
             
             if isReminderEnabled {
@@ -53,6 +54,7 @@ struct ReminderConfigurationView: View {
                 .onChange(of: reminderTime) { value in
                     formattedReminderTime = timeFormatter.string(from: value)
                 }
+                .buttonStyle(.borderless)
             }
         }
     }

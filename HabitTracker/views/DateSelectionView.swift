@@ -25,7 +25,7 @@ struct DateSelectionView: View {
             HStack{
                 Text(title)
                     .foregroundColor(.primary)
-                    .padding(.trailing, 10)
+                    .padding(.trailing,30)
                 Button(action: {
                     withAnimation {
                         showDatePicker.toggle()
@@ -36,7 +36,7 @@ struct DateSelectionView: View {
                         Text("\(selectedDate, formatter: dateFormatter)")
                     }
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderless)
             }
             if showDatePicker {
                 DatePicker(

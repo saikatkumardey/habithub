@@ -22,7 +22,9 @@ struct HabitTrackerApp: App {
                     UNUserNotificationCenter.current().delegate = notificationDelegate
                     notificationDelegate.habitStore = habitStore
                 })
-//                .tint(.green)
+//                .foregroundStyle(.secondary)
+//                .tint(.teal)
+//                .background(.secondary)
         }
     }
 }

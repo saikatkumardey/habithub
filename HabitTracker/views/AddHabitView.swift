@@ -38,7 +38,6 @@ struct AddHabit: View {
     var body: some View {
         NavigationView {
             VStack(alignment:.leading, spacing: 20) {
-                Spacer()
                 TextField("What do you want to get better at?", text: $newHabitTitle, axis: .vertical)
                     .lineLimit(2)
                     .focused($isTextFieldFocused)
@@ -48,11 +47,8 @@ struct AddHabit: View {
                     .font(.system(size: 20, weight: .light, design: .rounded))
                 ReminderConfigurationView(reminderTime: $newHabitReminderTime, isReminderEnabled: $newHabitReminderEnabled, title: "Remind me")
                     .font(.system(size: 20, weight: .light, design: .rounded))
-                Spacer()
-                
             }
             .padding()
-            .padding(.top,20)
             .navigationBarTitle("Add Habit")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: Button("Cancel") {
