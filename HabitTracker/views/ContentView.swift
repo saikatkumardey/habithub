@@ -1,7 +1,12 @@
 import SwiftUI
+import StoreKit
+
 
 struct CurrentHabitsView: View{
     @EnvironmentObject var habitStore: HabitStore
+    @State private var today = Date()
+    private let timer = Timer.publish(every: 60*60*3, on: .main, in: .common).autoconnect()
+    
     
     private var uncompletedHabits: [Habit] {
         habitStore.habits.filter { !$0.isHabitCompleted }
@@ -20,8 +25,8 @@ struct CurrentHabitsView: View{
     }
     
     func registerNotificationCategory() {
-        let markAsDoneAction = UNNotificationAction(identifier: "MARK_AS_DONE", title: "Done ✅", options: [])
-        let habitCategory = UNNotificationCategory(identifier: "HABIT_REMINDER", actions: [markAsDoneAction], intentIdentifiers: [], options: [])
+//        let markAsDoneAction = UNNotificationAction(identifier: "MARK_AS_DONE", title: "Done ✅", options: [])
+        let habitCategory = UNNotificationCategory(identifier: "HABIT_REMINDER", actions: [], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([habitCategory])
     }
     
@@ -31,13 +36,26 @@ struct CurrentHabitsView: View{
             .environmentObject(habitStore)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
-                leading: Text("It's \(Date().formatted(date: .long, time: .omitted)).")
+                leading: Text("It's \(today.formatted(date: .complete, time: .omitted)).")
                     .font(.system(size: 20, design: .rounded))
                     .foregroundColor(.gray)
             )
             .onAppear(perform: {
-                requestNotificationPermission()
-                registerNotificationCategory()
+                print("CurrentHabitsView appeared.")
+                
+                UNUserNotificationCenter.current().getNotificationSettings { settings in
+                    if settings.authorizationStatus == .authorized {
+                        print("Notification permission already granted.")
+                    } else {
+                        requestNotificationPermission()
+                        registerNotificationCategory()
+                    }
+                }
+                
+                today = Date()
+            })
+            .onReceive(timer, perform: { _ in
+                today = Date()
             })
     }
 }
@@ -67,16 +85,15 @@ struct CompletedHabitsView: View {
             }
         }
         .navigationBarTitle("Completed Habits")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
     }
 }
 
-
-
 struct ContentView: View {
+
     @EnvironmentObject private var habitStore: HabitStore
-    
+
     var body: some View {
         TabView {
             NavigationView {

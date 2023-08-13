@@ -7,16 +7,45 @@
 
 import SwiftUI
 
+
 struct HabitListView: View {
+    
+    
     @EnvironmentObject var habitStore: HabitStore
     @State private var selectedHabit: Habit?
     @State private var showingHabitDetails = false
     @State private var showingAddHabitSheet = false
-    @State private var newHabitTitle = ""
-    @State private var newHabitStartDate = Date()
-    @State private var newHabitReminderTime = Date().startOfDay.addingTimeInterval(8*60*60)
-    @State private var newHabitReminderEnabled : Bool = false
+    @State private var newHabit: Habit = Habit()
+    @State private var showDeleteConfirmationAlert = false
+    @State private var sortOrder = SortOrder.startDate
     
+    enum SortOrder {
+        case startDate, totalCompleted, longestStreak, currentStreak, reminderTime
+    }
+    
+    
+    var sortedHabits: [Habit] {
+        switch sortOrder {
+        case .startDate:
+            return habits.sorted { $0.startDate.startOfDay < $1.startDate.startOfDay }
+        case .reminderTime:
+            return habits.sorted {
+                // reminderTime is the HH:MM component of startDate
+                let firstTime = Calendar.current.dateComponents([.hour, .minute], from: $0.startDate)
+                let secondTime = Calendar.current.dateComponents([.hour, .minute], from: $1.startDate)
+                // convert firstTime to seconds
+                let firstTimeInSeconds = firstTime.hour! * 3600 + firstTime.minute! * 60
+                let secondTimeInSeconds = secondTime.hour! * 3600 + secondTime.minute! * 60
+                return firstTimeInSeconds < secondTimeInSeconds
+            }
+        case .totalCompleted:
+            return habits.sorted { $0.calculateTotalCompleted() > $1.calculateTotalCompleted() }
+        case .longestStreak:
+            return habits.sorted { $0.calculateLongestStreak() > $1.calculateLongestStreak() }
+        case .currentStreak:
+            return habits.sorted { $0.calculateStreak() > $1.calculateStreak() }
+        }
+    }
     
     var habits: [Habit]
     let isCompleted: Bool
@@ -36,12 +65,25 @@ struct HabitListView: View {
                             .foregroundColor(.white)
                             .padding(8)
                             .background(Circle().fill(.primary))
-                            .shadow(radius: 5)
                     }
                 }
             }else{
+                
                 List {
-                    ForEach(habits, id: \.id) { habit in
+                    HStack{
+                        Spacer()
+                        Picker("Sort by", selection: $sortOrder) {
+                                Text("Date Added").tag(SortOrder.startDate)
+                                Text("Reminder Time").tag(SortOrder.reminderTime)
+                                Text("Completed days").tag(SortOrder.totalCompleted)
+                                Text("Longest Streak").tag(SortOrder.longestStreak)
+                                Text("Current Streak").tag(SortOrder.currentStreak)
+                        }
+                        .pickerStyle(.menu)
+                        .labelsHidden()
+                        .fontDesign(.rounded)
+                    }
+                    ForEach(sortedHabits, id: \.id) { habit in
                         NavigationLink(
                             destination: HabitDetailView(habit: habit)
                                 .environmentObject(habitStore)
@@ -68,7 +110,8 @@ struct HabitListView: View {
                             .tint(habit.isHabitCompleted ? .gray : .green)
                             
                             Button(action: {
-                                deleteHabit(at: habit)
+                                selectedHabit = habit
+                                self.showDeleteConfirmationAlert = true
                             }) {
                                 Label("Delete", systemImage: "trash")
                                     .labelStyle(.titleAndIcon)
@@ -76,61 +119,48 @@ struct HabitListView: View {
                             .tint(.red)
                         }
                     }
-                    //            .listRowSeparator(.hidden)
-                    //            .listRowBackground(
-                    //                RoundedRectangle(cornerRadius: 5)
-                    //                    .foregroundColor(.teal.opacity(0.3))
-                    //                    .shadow(color:.white.opacity(0.1), radius: 5)
-                    //                    .padding(.vertical, 2)
-                    //
-                    //            )
+                }
+                .alert(isPresented: $showDeleteConfirmationAlert) {
+                    Alert(
+                        title: Text("Delete Habit"),
+                        message: Text("Are you sure you want to delete this habit?"),
+                        primaryButton: .destructive(Text("Delete")) {
+                            if let habit = selectedHabit {
+                                deleteHabit(at:habit)
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
                 }
                 .toolbar {
-                    if !isCompleted {
-                        ToolbarItem {
-                            Button {
-                                self.showingAddHabitSheet = true
-                            } label: {
-                                Image(systemName: "plus")
-                                    .font(.system(size:20,weight: .light))
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                    .background(Circle().fill(.primary))
-                                    .shadow(radius: 5)
-                            }
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button {
+                            self.showingAddHabitSheet = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.system(size:10,weight: .light))
+                                .foregroundColor(.white)
+                                .padding(8)
+                                .background(Circle().fill(.primary))
                         }
                     }
                 }
-                .shadow(color:.gray.opacity(0.7), radius: 5)
             }
         }
         .sheet(isPresented: $showingAddHabitSheet) {
-            AddHabit(newHabitTitle: $newHabitTitle,
-                     newHabitStartDate: $newHabitStartDate,
-                     newHabitReminderTime: $newHabitReminderTime,
-                     newHabitReminderEnabled: $newHabitReminderEnabled
-            ){
+            AddHabit(){
                 addHabit()
             }
-            .presentationDetents([.fraction(0.4)])
+            .environmentObject(newHabit)
+            .presentationDetents([.fraction(0.3)])
         }
     }
     
     func addHabit() {
-        let newHabit = Habit(title: newHabitTitle,
-                             completedDates: [],
-                             startDate: newHabitStartDate,
-                             reminderTime: newHabitReminderTime,
-                             isReminderEnabled: newHabitReminderEnabled
-        )
-        
         print("Adding new habit: \(newHabit.title)")
         habitStore.addHabit(newHabit)
-        habitStore.listHabits()
-        if newHabitReminderEnabled {
-            habitStore.scheduleNotification(for: newHabit, at: newHabitReminderTime)
-        }
-        newHabitTitle = ""
+        habitStore.scheduleNotification(for: newHabit, at: newHabit.startDate)
+        newHabit = Habit()
     }
     
     

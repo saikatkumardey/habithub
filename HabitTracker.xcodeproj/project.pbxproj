@@ -12,10 +12,10 @@
 		8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19514F2A593F2E00E33E2C /* HabitStore.swift */; };
 		8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515B2A5AF31200E33E2C /* HabitRowView.swift */; };
 		8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19515D2A5AF38A00E33E2C /* HabitListView.swift */; };
-		8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1951612A5AF9E300E33E2C /* EditHabitView.swift */; };
 		8A29F3632A63CCC40047DFF0 /* NumberCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */; };
+		8A2BFCC12A88C3B6002D2FBB /* EmojiKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A2BFCC02A88C3B6002D2FBB /* EmojiKit */; };
 		8A7076CE2A6994430017FCA4 /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7076CD2A6994430017FCA4 /* HabitDetailView.swift */; };
-		8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */; };
+		8A72FCC82A502F3F00C0A67C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC72A502F3F00C0A67C /* App.swift */; };
 		8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCC92A502F3F00C0A67C /* ContentView.swift */; };
 		8A72FCCC2A502F4100C0A67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A72FCCB2A502F4100C0A67C /* Assets.xcassets */; };
 		8A72FCCF2A502F4100C0A67C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A72FCCE2A502F4100C0A67C /* Preview Assets.xcassets */; };
@@ -23,6 +23,11 @@
 		8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF52A5034C300C0A67C /* AddHabitView.swift */; };
 		8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */; };
 		8AAFB62F2A66FADF009BAC88 /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */; };
+		8AD217E62A723DE500E9785D /* HabitSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD217E52A723DE400E9785D /* HabitSymbols.swift */; };
+		8AD217E82A723F6D00E9785D /* ColorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD217E72A723F6D00E9785D /* ColorOption.swift */; };
+		8AD217EA2A72400800E9785D /* SFSymbolStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD217E92A72400800E9785D /* SFSymbolStyling.swift */; };
+		8AD217EC2A72404F00E9785D /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD217EB2A72404F00E9785D /* SymbolPicker.swift */; };
+		8AE273AB2A74481D0093D172 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE273AA2A74481D0093D172 /* Onboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,12 +53,11 @@
 		8A19514F2A593F2E00E33E2C /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
 		8A19515B2A5AF31200E33E2C /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		8A19515D2A5AF38A00E33E2C /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
-		8A1951612A5AF9E300E33E2C /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		8A1951632A5B36BC00E33E2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A29F3622A63CCC40047DFF0 /* NumberCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCardView.swift; sourceTree = "<group>"; };
 		8A7076CD2A6994430017FCA4 /* HabitDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HabitDetailView.swift; path = ../../../../../.Trash/HabitDetailView.swift; sourceTree = "<group>"; };
 		8A72FCC42A502F3F00C0A67C /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
+		8A72FCC72A502F3F00C0A67C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		8A72FCC92A502F3F00C0A67C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8A72FCCB2A502F4100C0A67C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A72FCCE2A502F4100C0A67C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -63,6 +67,11 @@
 		8A72FCF52A5034C300C0A67C /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		8AAFB62E2A66FADF009BAC88 /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
+		8AD217E52A723DE400E9785D /* HabitSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSymbols.swift; sourceTree = "<group>"; };
+		8AD217E72A723F6D00E9785D /* ColorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorOption.swift; sourceTree = "<group>"; };
+		8AD217E92A72400800E9785D /* SFSymbolStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolStyling.swift; sourceTree = "<group>"; };
+		8AD217EB2A72404F00E9785D /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
+		8AE273AA2A74481D0093D172 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A2BFCC12A88C3B6002D2FBB /* EmojiKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				8A72FCF52A5034C300C0A67C /* AddHabitView.swift */,
-				8A1951612A5AF9E300E33E2C /* EditHabitView.swift */,
 				8A7076CD2A6994430017FCA4 /* HabitDetailView.swift */,
 				8A72FCC92A502F3F00C0A67C /* ContentView.swift */,
 				8A025B452A5667DF007D1098 /* ReminderConfigurationView.swift */,
@@ -127,13 +136,19 @@
 		8A72FCC62A502F3F00C0A67C /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
+				8AB8D8C12A88BD38006A5F39 /* EmojiPickerView */,
 				8A003AB32A640B57009E20E7 /* Launch Screen.storyboard */,
 				8A1951632A5B36BC00E33E2C /* Info.plist */,
 				8A1951522A593FE200E33E2C /* views */,
-				8A72FCC72A502F3F00C0A67C /* HabitTrackerApp.swift */,
+				8A72FCC72A502F3F00C0A67C /* App.swift */,
 				8A72FCF12A502F5800C0A67C /* Habit.swift */,
+				8AD217EB2A72404F00E9785D /* SymbolPicker.swift */,
 				8A72FCF92A546CCF00C0A67C /* NotificationDelegate.swift */,
 				8A19514F2A593F2E00E33E2C /* HabitStore.swift */,
+				8AD217E52A723DE400E9785D /* HabitSymbols.swift */,
+				8AD217E72A723F6D00E9785D /* ColorOption.swift */,
+				8AD217E92A72400800E9785D /* SFSymbolStyling.swift */,
+				8AE273AA2A74481D0093D172 /* Onboarding.swift */,
 				8A72FCCB2A502F4100C0A67C /* Assets.xcassets */,
 				8A72FCCD2A502F4100C0A67C /* Preview Content */,
 			);
@@ -146,6 +161,13 @@
 				8A72FCCE2A502F4100C0A67C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8AB8D8C12A88BD38006A5F39 /* EmojiPickerView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EmojiPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +187,7 @@
 			);
 			name = HabitTracker;
 			packageProductDependencies = (
+				8A2BFCC02A88C3B6002D2FBB /* EmojiKit */,
 			);
 			productName = HabitTracker;
 			productReference = 8A72FCC42A502F3F00C0A67C /* HabitTracker.app */;
@@ -239,6 +262,7 @@
 			);
 			mainGroup = 8A72FCBB2A502F3F00C0A67C;
 			packageReferences = (
+				8A2BFCBF2A88C3B6002D2FBB /* XCRemoteSwiftPackageReference "EmojiKit" */,
 			);
 			productRefGroup = 8A72FCC52A502F3F00C0A67C /* Products */;
 			projectDirPath = "";
@@ -284,18 +308,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A7076CE2A6994430017FCA4 /* HabitDetailView.swift in Sources */,
+				8AD217EC2A72404F00E9785D /* SymbolPicker.swift in Sources */,
 				8A1951502A593F2E00E33E2C /* HabitStore.swift in Sources */,
 				8A72FCF22A502F5800C0A67C /* Habit.swift in Sources */,
 				8A72FCF62A5034C300C0A67C /* AddHabitView.swift in Sources */,
+				8AE273AB2A74481D0093D172 /* Onboarding.swift in Sources */,
 				8A72FCCA2A502F3F00C0A67C /* ContentView.swift in Sources */,
+				8AD217E62A723DE500E9785D /* HabitSymbols.swift in Sources */,
+				8AD217E82A723F6D00E9785D /* ColorOption.swift in Sources */,
 				8A19515C2A5AF31200E33E2C /* HabitRowView.swift in Sources */,
 				8A025B462A5667DF007D1098 /* ReminderConfigurationView.swift in Sources */,
 				8A72FCFA2A546CCF00C0A67C /* NotificationDelegate.swift in Sources */,
 				8A19515E2A5AF38A00E33E2C /* HabitListView.swift in Sources */,
 				8AAFB62F2A66FADF009BAC88 /* DateSelectionView.swift in Sources */,
-				8A1951622A5AF9E300E33E2C /* EditHabitView.swift in Sources */,
 				8A29F3632A63CCC40047DFF0 /* NumberCardView.swift in Sources */,
-				8A72FCC82A502F3F00C0A67C /* HabitTrackerApp.swift in Sources */,
+				8A72FCC82A502F3F00C0A67C /* App.swift in Sources */,
+				8AD217EA2A72400800E9785D /* SFSymbolStyling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +480,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = B8JD4KN6R9;
 				ENABLE_PREVIEWS = YES;
@@ -490,7 +518,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = B8JD4KN6R9;
 				ENABLE_PREVIEWS = YES;
@@ -633,6 +661,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A2BFCBF2A88C3B6002D2FBB /* XCRemoteSwiftPackageReference "EmojiKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devdchaudhary/EmojiKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A2BFCC02A88C3B6002D2FBB /* EmojiKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A2BFCBF2A88C3B6002D2FBB /* XCRemoteSwiftPackageReference "EmojiKit" */;
+			productName = EmojiKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A72FCBC2A502F3F00C0A67C /* Project object */;
 }

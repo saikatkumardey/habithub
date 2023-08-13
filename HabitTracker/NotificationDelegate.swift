@@ -17,17 +17,19 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.actionIdentifier == "MARK_AS_DONE" {
-            if let habitIdString = response.notification.request.content.userInfo["habitId"] as? String,
-               let habitId = UUID(uuidString: habitIdString),
-               let habitStore = habitStore,
-               let habit = habitStore.getHabit(by: habitId) {
-                habitStore.markDayAsCompleted(habit, date: Date())
-            } else {
-                print("Error: Unable to mark habit as completed")
-                print("habitIdString: \(String(describing: response.notification.request.content.userInfo["habitId"] as? String))")
-            }
-        }
+//        if response.actionIdentifier == "MARK_AS_DONE" {
+//            if let habitIdString = response.notification.request.content.userInfo["habitId"] as? String,
+//               let habitId = UUID(uuidString: habitIdString),
+//               let habitStore = habitStore,
+//               let habit = habitStore.getHabit(by: habitId) {
+//                let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+//                habit.completedDates.insert(dateComponents)
+//                habitStore.updateHabit(habit)
+//            } else {
+//                print("Error: Unable to mark habit as completed")
+//                print("habitIdString: \(String(describing: response.notification.request.content.userInfo["habitId"] as? String))")
+//            }
+//        }
         
         completionHandler()
     }

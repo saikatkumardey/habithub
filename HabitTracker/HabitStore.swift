@@ -37,23 +37,18 @@ class HabitStore: ObservableObject {
         print("added habit \(habit.title), id \(habit.id.uuidString)")
     }
     
-    func removeHabit(at offsets: IndexSet) {
-        habits.remove(atOffsets: offsets)
-    }
     
     func updateHabit(_ habit: Habit) {
-        print("updating habit \(habit.title), id \(habit.id.uuidString)")
         if let index = habits.firstIndex(where: { $0.id == habit.id }) {
+            print("updating habit \(habit.title), id \(habit.id.uuidString)")
+            print("earlier start-date \(habits[index].startDate), new start-date \(habit.startDate)")
+            if habit.isHabitCompleted{
+                cancelNotification(for: habits[index])
+            }
+            print("cancelling/schedule notification for habit \(habit.title)")
+            cancelNotification(for: habits[index])
+            scheduleNotification(for: habit, at: habit.startDate)
             habits[index] = habit
-        }
-        if habit.isReminderEnabled {
-            print("updating notification for habit \(habit.title)")
-            scheduleNotification(for: habit, at: habit.reminderTime)
-        } else {
-            cancelNotification(for: habit)
-        }
-        if habit.isCompleted(on: Date()) {
-            cancelNotification(for: habit)
         }
     }
     
@@ -81,7 +76,6 @@ class HabitStore: ObservableObject {
         habit.completedDate = Date()
         print("habit \(habit.title) completed on \(habit.completedDate ?? Date())")
         updateHabit(habit)
-        cancelNotification(for: habit)
     }
     
     func markHabitAsNotCompleted(_ habit: Habit) {
@@ -94,7 +88,6 @@ class HabitStore: ObservableObject {
     func markDayAsCompleted(_ habit: Habit, date: Date) {
         habit.markDateCompleted(date: date)
         updateHabit(habit)
-        cancelNotification(for: habit)
     }
     
     
@@ -108,20 +101,18 @@ class HabitStore: ObservableObject {
         }
     }
     
-    func saveReminderTime(_ reminder: Date, forHabitID habitID: UUID){
-        if let index = habits.firstIndex(where: { $0.id == habitID }) {
-            habits[index].reminderTime = reminder
-        }
-    }
-    
-    func moveHabit(from source: IndexSet, to destination: Int) {
-        habits.move(fromOffsets: source, toOffset: destination)
-    }
-    
     func scheduleNotification(for habit: Habit, at date: Date) {
         
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            print("requests = \(requests)")
+            if requests.contains(where: { $0.identifier == habit.id.uuidString }) {
+                print("Notification already scheduled for habit: \(habit.title), id = \(habit.id.uuidString)")
+                return
+            }
+        }
+        
         let content = UNMutableNotificationContent()
-        content.title = "Time for your habit!"
+        content.title = "Did you complete your habit today?"
         content.body = "\(habit.title)"
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "HABIT_REMINDER"

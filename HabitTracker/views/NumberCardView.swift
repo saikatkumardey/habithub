@@ -21,13 +21,15 @@ struct NumberCard: View {
                 .fill(fillColor)
                 .shadow(color:.primary.opacity(0.3), radius: 20)
 
-            VStack{
+            VStack(alignment: .center){
                 HStack{
                     Image(systemName: icon)
                         .foregroundColor(iconColor)
-                        .font(.title)
+                        .font(.system(size: 40))
                     Text(text)
-                        .font(.subheadline)
+                        .font(.title2)
+                        .fontWeight(.thin)
+                        .fontDesign(.serif)
                         .foregroundColor(.secondary)
                 }
                 .padding(.top,10)

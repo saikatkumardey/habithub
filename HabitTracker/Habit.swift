@@ -14,36 +14,32 @@ enum ReminderFrequency: String, Codable {
     case monthly
 }
 
-
 class Habit: ObservableObject, Identifiable, Codable {
     
     @Published var id: UUID = UUID()
+    @Published var symbol: String = "🚀"
+    @Published var color: Color = ColorOptions.default
     @Published var title: String = ""
     @Published var completedDates: Set<DateComponents> = []
     @Published var maxStreak: Int = 0
     @Published var startDate: Date = Date()
     @Published var isHabitCompleted: Bool = false
     @Published var completedDate: Date? = nil
-    @Published var reminderTime: Date = Date().startOfDay.addingTimeInterval(8*60*60)
     @Published var reminderFrequency: ReminderFrequency? = nil
-    @Published var isReminderEnabled: Bool = false
     @Published var lastUpdated: Date = Date()
     
-    init(title: String="", completedDates: Set<DateComponents>=[], startDate: Date = Date(), isCompleted: Bool = false, completedDate: Date? = nil, reminderTime: Date, reminderFrequency: ReminderFrequency? = nil, isReminderEnabled: Bool = false) {
+    init(title: String="", completedDates: Set<DateComponents>=[], startDate: Date = Date(), isCompleted: Bool = false, completedDate: Date? = nil) {
         self.title = title
         self.completedDates = completedDates
         self.startDate = startDate
         self.isHabitCompleted = isCompleted
         self.completedDate = completedDate
-        self.reminderTime = reminderTime
-        self.reminderFrequency = reminderFrequency
-        self.isReminderEnabled = isReminderEnabled
         self.lastUpdated = Date()
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, title, completedDates, startDate, isHabitCompleted, completedDate, reminderTime, reminderFrequency, isReminderEnabled, lastUpdated
-    
+        case id, title, completedDates, startDate, isHabitCompleted, completedDate, reminderFrequency, lastUpdated, symbol, color
+        
     }
     
     required init(from decoder: Decoder) throws {
@@ -54,10 +50,10 @@ class Habit: ObservableObject, Identifiable, Codable {
         startDate = try container.decode(Date.self, forKey: .startDate)
         isHabitCompleted = try container.decode(Bool.self, forKey: .isHabitCompleted)
         completedDate = try container.decode(Date?.self, forKey: .completedDate)
-        reminderTime = try container.decode(Date.self, forKey: .reminderTime)
         reminderFrequency = try container.decode(ReminderFrequency?.self, forKey: .reminderFrequency)
-        isReminderEnabled = try container.decode(Bool.self, forKey: .isReminderEnabled)
+        symbol = try container.decode(String.self, forKey: .symbol)
         lastUpdated = Date()
+        color = try container.decode(Color.self, forKey: .color)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -68,10 +64,10 @@ class Habit: ObservableObject, Identifiable, Codable {
         try container.encode(startDate, forKey: .startDate)
         try container.encode(isHabitCompleted, forKey: .isHabitCompleted)
         try container.encode(completedDate, forKey: .completedDate)
-        try container.encode(reminderTime, forKey: .reminderTime)
-        try container.encode(reminderFrequency, forKey: .reminderFrequency)
-        try container.encode(isReminderEnabled, forKey: .isReminderEnabled)
         try container.encode(lastUpdated, forKey: .lastUpdated)
+        try container.encode(reminderFrequency, forKey: .reminderFrequency)
+        try container.encode(symbol, forKey: .symbol)
+        try container.encode(color, forKey: .color)
     }
     
     func completedDatesSet() -> Set<Date> {
@@ -93,7 +89,7 @@ class Habit: ObservableObject, Identifiable, Codable {
     
     func calculateStreak(from: Date = Date()) -> Int {
         var streak = 0
-        var date = from
+        var date = from.startOfDay
         while isCompleted(on: date) {
             streak += 1
             date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
@@ -103,12 +99,12 @@ class Habit: ObservableObject, Identifiable, Codable {
     
     func calculateTotalCompleted() -> Int {
         return completedDates.count
-    }    
+    }
     
     func calculateLongestStreak() -> Int {
         var longestStreak = 0
-        var date = Date()
-        while date >= startDate {
+        var date = Date().startOfDay
+        while date >= startDate.startOfDay {
             if isCompleted(on: date) {
                 let streak = calculateStreak(from: date)
                 if streak > longestStreak {
@@ -128,7 +124,7 @@ class Habit: ObservableObject, Identifiable, Codable {
         var cells = [Int]()
         var date = Date()
         var i = 0
-        while i < n && date >= startDate {
+        while i < n && date >= startDate.startOfDay {
             if isCompleted(on: date) {
                 cells.append(1)
             } else {
@@ -168,6 +164,7 @@ extension Date {
 
 extension UserDefaults {
     private static let habitsKey = "habits"
+    private static let lastReviewRequestDateKey = "lastReviewRequestDate"
     
     func saveHabits(_ habits: [Habit]) {
         if let encodedData = try? JSONEncoder().encode(habits) {
@@ -182,5 +179,13 @@ extension UserDefaults {
             }
         }
         return []
+    }
+    
+    func saveLastReviewRequestDate(_ date: Date) {
+        set(date, forKey: UserDefaults.lastReviewRequestDateKey)
+    }
+    
+    func loadLastReviewRequestDate() -> Date? {
+        return object(forKey: UserDefaults.lastReviewRequestDateKey) as? Date
     }
 }
