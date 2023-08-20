@@ -5,44 +5,60 @@
 //  Created by Saikat Kumar Dey on 19/08/23.
 //
 import SwiftUI
+import StoreKit
+
 
 struct HabitDetailView: View {
+    @AppStorage("lastRequestDateEpoch") var lastRequestDateEpoch: Double = 0
+    @AppStorage("daysToWait") var daysToWait: Int = 7
+    
     @EnvironmentObject var habit: Habit
     @EnvironmentObject var habitStore: HabitStore
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.requestReview) var requestReview
     
     @State private var isEditing: Bool = false
     @State private var isPickingSymbol: Bool = false
     @State private var today: Date = Date().startOfDay.addingTimeInterval(86399)
     
+    func requestReviewIfAppropriate(userStreak: Int) {
+        if userStreak > 0 &&  (userStreak % 7 == 0) {
+            let daysSinceLastRequest = (Date().timeIntervalSince1970 - Double(lastRequestDateEpoch)) / 86400
+            if daysSinceLastRequest >= Double(daysToWait) {
+                requestReview()
+                lastRequestDateEpoch = Date().timeIntervalSince1970
+                daysToWait += 7
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 15) {
-                    HStack{
-                        Image(systemName: "calendar")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15, height: 15)
-                            .sfSymbolStyling()
-                            .foregroundStyle(.gray)
-                        Text(habit.startDate, style: .date)
-                            .font(.caption)
-                            .fontDesign(.rounded)
-                            .foregroundStyle(.secondary)
-                        Spacer()
-                        Image(systemName: "clock")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15, height: 15)
-                            .sfSymbolStyling()
-                            .foregroundStyle(.gray)
-                        Text(habit.startDate, style: .time)
-                            .font(.caption)
-                            .fontDesign(.rounded)
-                            .foregroundStyle(.secondary)
-                    }
+                        HStack{
+                            Image(systemName: "calendar")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .sfSymbolStyling()
+                                .foregroundStyle(.gray)
+                            Text(habit.startDate, style: .date)
+                                .font(.caption)
+                                .fontDesign(.monospaced)
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack{
+                            Image(systemName: "alarm")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .sfSymbolStyling()
+                                .foregroundStyle(.gray)
+                            Text(habit.startDate, style: .time)
+                                .font(.caption)
+                                .fontDesign(.monospaced)
+                                .foregroundStyle(.secondary)
+                        }
                     
                     if habit.startDate.startOfDay > today {
                         Text("Habit will start on \(habit.startDate, style: .date)")
@@ -71,6 +87,12 @@ struct HabitDetailView: View {
                             .onAppear(){
                                 print("onAppear")
                                 today = Date().startOfDay.addingTimeInterval(86399)
+                            }
+                            .onChange(of: habit.completedDates) { dates in
+                                print("onChange")
+                                if habit.calculateStreak() > 0 {
+                                    requestReviewIfAppropriate(userStreak: habit.calculateStreak())
+                                }
                             }
                         
                         VStack(spacing:5) {
@@ -120,15 +142,6 @@ struct HabitDetailView: View {
         }
     }
     
-}
-
-struct EditHabitView: View {
-    @EnvironmentObject var habit: Habit
-    
-    var body: some View {
-        // Your editing interface here
-        Text("Editing interface here")
-    }
 }
 
 // Date Formatter

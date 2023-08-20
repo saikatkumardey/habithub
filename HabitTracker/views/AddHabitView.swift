@@ -16,6 +16,8 @@ struct AddHabit: View {
     @EnvironmentObject var habit: Habit
     //    @FocusState private var isTextFieldFocused: Bool
     @State private var isPickingSymbol: Bool = false
+    @State private var showingPopover = false
+    
     var isEditing: Bool = false
     
     let onAdd: () -> Void
@@ -28,6 +30,7 @@ struct AddHabit: View {
                     .lineLimit(2)
                     .background(Color(.systemGray5))
                     .cornerRadius(10)
+                
                 HStack{
                     DatePicker(
                         "",
@@ -41,24 +44,30 @@ struct AddHabit: View {
                     .onAppear{
                         UIDatePicker.appearance().minuteInterval = 15
                     }
+                    Button(action: {
+                        showingPopover = true
+                    }) {
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.blue)
+                    }
+                    .popover(isPresented: $showingPopover, attachmentAnchor: .point(.center), arrowEdge: .top) {
+                        Text("Set up a start date and reminder time.")
+                            .presentationCompactAdaptation(.none)
+                            .padding()
+                    }
                 }
-                
+                Spacer()
                 SymbolPicker()
                     .environmentObject(habit)
             }
-            .onChange(of: colorScheme) { _ in
-                print("Theme changed")
-                print("Symbol: \(habit.symbol), Color: \(habit.color)")
-                
-            }
-            .padding()
+            .padding(.horizontal)
             .navigationBarTitle(isEditing ? "Edit Habit" : "Add Habit")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 trailing: Button(isEditing ? "Done" : "Create") {
-                onAdd()
-                dismiss()
-            }.disabled($habit.title.wrappedValue.isEmpty))
+                    onAdd()
+                    dismiss()
+                }.disabled($habit.title.wrappedValue.isEmpty))
         }
         .gesture(TapGesture().onEnded{
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

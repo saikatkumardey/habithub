@@ -73,7 +73,7 @@ struct HabitListView: View {
                     HStack{
                         Spacer()
                         Picker("Sort by", selection: $sortOrder) {
-                            Text("Date Added").tag(SortOrder.startDate)
+                            Text("Start Date").tag(SortOrder.startDate)
                             Text("Reminder Time").tag(SortOrder.reminderTime)
                             Text("Completed days").tag(SortOrder.totalCompleted)
                             Text("Longest Streak").tag(SortOrder.longestStreak)
