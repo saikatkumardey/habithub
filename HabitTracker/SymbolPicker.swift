@@ -12,28 +12,28 @@ struct SymbolPicker: View {
     @EnvironmentObject var habit: Habit
     @State private var selectedColor: Color = ColorOptions.default
     @Environment(\.dismiss) private var dismiss
-    @State private var symbolNames = HabitSymbols.symbolNames
     @State private var searchInput = ""
+    var filteredSymbols: [String] {
+        if searchInput.isEmpty {
+            return Array(HabitSymbols.symbolDescriptions.keys)
+        } else {
+            return HabitSymbols.symbolDescriptions.filter { key, value in
+                value.lowercased().contains(searchInput.lowercased())
+            }.map { $0.key }
+        }
+    }
     
-    var columns = Array(repeating: GridItem(.flexible()), count: 6)
+    var columns = Array(repeating: GridItem(.flexible()), count: 3)
 
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Done")
-                }
-                .padding()
-            }
             VStack {
                 Image(systemName: habit.symbol)
                     .font(.title)
+                    .fontWeight(.heavy)
                     .imageScale(.large)
                     .foregroundColor(selectedColor)
-                Text("some description1, desc2")
+                Text(HabitSymbols.symbolDescriptions[habit.symbol] ?? "")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -53,28 +53,30 @@ struct SymbolPicker: View {
             .padding(.horizontal)
             .frame(height: 40)
 
-            Divider()
-
             // Add TextField for search input
             TextField("Search symbols", text: $searchInput)
-                .padding(.horizontal)
+                .padding()
+                .background(Color(.systemGray5))
+                .cornerRadius(10)
 
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    // Filter symbolNames based on searchInput
-                    ForEach(symbolNames.filter { symbolItem in
-                        let trimmedSearchInput = searchInput.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                        return trimmedSearchInput.isEmpty || symbolItem.contains(trimmedSearchInput)
-                    }, id: \.self) { symbolItem in
-                        Button {
+                    // Filter filteredSymbols based on searchInput
+                    ForEach(filteredSymbols, id: \.self) { symbolItem in
+                        Button(action: {
                             habit.symbol = symbolItem
-                        } label: {
-                            Image(systemName: symbolItem)
-                                .sfSymbolStyling()
-                                .foregroundColor(selectedColor)
-                                .padding(5)
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(.gray.opacity(0.1))
+                                    .frame(width: 80, height: 80)
+                                Image(systemName: symbolItem)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(selectedColor)
+                            }
                         }
-                        .buttonStyle(.plain)
                     }
                 }
                 .drawingGroup()
@@ -94,4 +96,5 @@ struct SymbolPicker_Previews: PreviewProvider {
             .environmentObject(habit)
     }
 }
+
 

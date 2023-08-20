@@ -17,7 +17,7 @@ enum ReminderFrequency: String, Codable {
 class Habit: ObservableObject, Identifiable, Codable {
     
     @Published var id: UUID = UUID()
-    @Published var symbol: String = "🚀"
+    @Published var symbol: String = HabitSymbols.default
     @Published var color: Color = ColorOptions.default
     @Published var title: String = ""
     @Published var completedDates: Set<DateComponents> = []
@@ -95,6 +95,22 @@ class Habit: ObservableObject, Identifiable, Codable {
             date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
         }
         return streak
+    }
+    
+    func clearCompletedDates() {
+       
+        // remove completed dates before date below
+        var datesToRemove = [DateComponents]()
+        for dateComponent in completedDates {
+            if let date = Calendar.current.date(from: dateComponent) {
+                if date < startDate.startOfDay {
+                    datesToRemove.append(dateComponent)
+                }
+            }
+        }
+        for dateComponent in datesToRemove {
+            completedDates.remove(dateComponent)
+        }
     }
     
     func calculateTotalCompleted() -> Int {

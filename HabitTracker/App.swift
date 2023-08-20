@@ -9,23 +9,22 @@ import SwiftUI
 
 @main
 struct HabitTrackerApp: App {
-    @AppStorage("hasCompletedOnboarding") var hasCompletedOnboarding: Bool = false
+//    @AppStorage("hasCompletedOnboarding") var hasCompletedOnboarding: Bool = false
     @StateObject private var habitStore = HabitStore()
     @StateObject private var notificationDelegate = NotificationDelegate()
     
     var body: some Scene {
         WindowGroup {
-            if !hasCompletedOnboarding {
-                OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
-            } else {
-                ContentView()
-                    .environmentObject(habitStore)
-                    .font(.system(.body, design: .rounded))
-                    .onAppear(perform: {
-                        UNUserNotificationCenter.current().delegate = notificationDelegate
-                        notificationDelegate.habitStore = habitStore
-                    })
-            }
+            //            if !hasCompletedOnboarding {
+            //                OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+            //            } else {
+            ContentView()
+                .environmentObject(habitStore)
+                .font(.system(.body, design: .rounded))
+                .onAppear(perform: {
+                    UNUserNotificationCenter.current().delegate = notificationDelegate
+                    notificationDelegate.habitStore = habitStore
+                })
         }
     }
 }

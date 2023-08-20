@@ -28,38 +28,47 @@ struct OnboardingView: View {
                 )
                 .tag(2)
                 FeatureView(
-                    feature: "Get notified",
-                    description: "Get notified about your habits so you never miss a day.",
-                    imageName: "OnboardingReminder"
-                )
-                .tag(3)
-                FeatureView(
                     feature: "You're all set!",
                     description: "Start building and tracking habits now.",
                     imageName: "OnboardingFinal"
                 )
-                .tag(4)
+                .tag(3)
             }
             .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .interactive))
             
-            Button(action: {
-                if currentPage < 4 {
-                    withAnimation {
-                        currentPage += 1
+            HStack{
+                Button(action: {
+                    if currentPage < 3 {
+                        withAnimation {
+                            currentPage += 1
+                        }
+                    } else {
+                        hasCompletedOnboarding = true
                     }
-                } else {
-                    // Handle "Get Started" button tap
-                    hasCompletedOnboarding = true
+                }) {
+                    Text(currentPage == 3 ? "Get Started" : "Next")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.horizontal,10)
+                        .padding(.vertical,5)
                 }
-            }) {
-                Text(currentPage == 4 ? "Get Started" : "Next")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding(.horizontal,30)
-                    .padding(.vertical,5)
+                .buttonStyle(.bordered)
+                
+                if currentPage > 0 && currentPage < 3 {
+                    Button(action: {
+                        hasCompletedOnboarding = true
+                    }) {
+                        Text("Skip")
+                            .font(.title)
+                            .foregroundColor(.secondary)
+                            .underline()
+                            .fontWeight(.light)
+                            .padding(.horizontal,10)
+                            .padding(.vertical,5)
+                    }
+                }
             }
-            .buttonStyle(.bordered)
         }
     }
 }
@@ -79,7 +88,7 @@ struct WelcomeView: View {
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundColor(.primary)
-            Text("Tiny habits, big results.")
+            Text("Small habits, big results.")
                 .font(.subheadline)
                 .fontWeight(.light)
                 .fontDesign(.rounded)

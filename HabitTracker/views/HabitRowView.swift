@@ -9,33 +9,38 @@ import SwiftUI
 
 struct HabitRow: View {
     @Environment(\.scenePhase) var scenePhase
+    // theme
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var habitStore: HabitStore
     @ObservedObject var habit: Habit
     @State private var isAddHabitSheetPresented = false
     @State private var lastNdays = [Int]()
-    private let timer = Timer.publish(every: 60*60*3, on: .main, in: .common).autoconnect()
     
     var body: some View {
+       
         ZStack(alignment: .topLeading){
             HStack(alignment: .center){
-//                Image(systemName: habit.symbol)
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 25, height: 25)
-//                    .sfSymbolStyling()
-//                    .foregroundStyle(habit.color)
-//                    .padding(5)
                 
-                Text(habit.symbol)
-                    .font(.system(size: 30))
-                    .padding(5)
+                ZStack{
+                    Circle()
+                        .fill(Color(.systemGray6))
+                        .frame(width: 40, height: 40)
+                    
+                    Image(systemName: habit.symbol)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .sfSymbolStyling()
+                        .foregroundStyle(colorScheme == .dark && habit.color == .black ? .primary : habit.color)
+                   
+                }
+                
                 
                 VStack(alignment: .leading,spacing: 5) {
                     HStack(alignment: .top) {
                         Text(habit.title)
                             .font(.system(size: 18))
                             .fontDesign(.rounded)
-                            .fontWeight(.light)
                             .foregroundColor(.primary)
                         Spacer()
                     }
@@ -77,10 +82,6 @@ struct HabitRow: View {
                             print("Scene is active!, recomputing last N day cells.")
                         }
                     }
-                    .onReceive(timer, perform: { _ in
-                        print("Timer fired, recomputing last N day cells.")
-                        lastNdays = habit.lastNdayCells(n: 7)
-                    })
                 }.padding(5)
                 
             }

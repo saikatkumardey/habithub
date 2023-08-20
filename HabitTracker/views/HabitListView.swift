@@ -73,11 +73,11 @@ struct HabitListView: View {
                     HStack{
                         Spacer()
                         Picker("Sort by", selection: $sortOrder) {
-                                Text("Date Added").tag(SortOrder.startDate)
-                                Text("Reminder Time").tag(SortOrder.reminderTime)
-                                Text("Completed days").tag(SortOrder.totalCompleted)
-                                Text("Longest Streak").tag(SortOrder.longestStreak)
-                                Text("Current Streak").tag(SortOrder.currentStreak)
+                            Text("Date Added").tag(SortOrder.startDate)
+                            Text("Reminder Time").tag(SortOrder.reminderTime)
+                            Text("Completed days").tag(SortOrder.totalCompleted)
+                            Text("Longest Streak").tag(SortOrder.longestStreak)
+                            Text("Current Streak").tag(SortOrder.currentStreak)
                         }
                         .pickerStyle(.menu)
                         .labelsHidden()
@@ -85,11 +85,42 @@ struct HabitListView: View {
                     }
                     ForEach(sortedHabits, id: \.id) { habit in
                         NavigationLink(
-                            destination: HabitDetailView(habit: habit)
+                            destination: HabitDetailView()
+                                .environmentObject(habit)
                                 .environmentObject(habitStore)
                         ){
-                            HabitRow(habit: habit)
-                                .environmentObject(habitStore)
+                            HStack(alignment: .top) {
+                                HabitRow(habit: habit)
+                                    .environmentObject(habitStore)
+                                Spacer()
+                                VStack{
+                                    Image(systemName: habit.isHabitCompleted ? "checkmark.circle.fill": "checkmark.circle")
+                                        .font(.system(size: 10, weight: .light))
+                                        .foregroundColor(.green)
+                                    
+                                    Text("\(habit.calculateTotalCompleted())")
+                                        .foregroundColor(.green)
+                                        .fontWeight(.thin)
+                                }
+                                VStack{
+                                    Image(systemName: habit.isHabitCompleted ? "flame.fill": "flame")
+                                        .font(.system(size: 10, weight: .light))
+                                        .foregroundColor(.pink)
+                                    
+                                    Text("\(habit.calculateStreak())")
+                                        .foregroundColor(.pink)
+                                        .fontWeight(.thin)
+                                }
+                                VStack{
+                                    Image(systemName:  habit.isHabitCompleted ? "trophy.fill": "trophy")
+                                        .font(.system(size: 10, weight: .light))
+                                        .foregroundColor(.orange)
+                                    
+                                    Text("\(habit.calculateLongestStreak())")
+                                        .foregroundColor(.orange)
+                                        .fontWeight(.thin)
+                                }
+                            }
                         }
                         .swipeActions {
                             Button(action: {
@@ -152,7 +183,7 @@ struct HabitListView: View {
                 addHabit()
             }
             .environmentObject(newHabit)
-            .presentationDetents([.fraction(0.3)])
+//            .presentationDetents([.fraction(0.3)])
         }
     }
     

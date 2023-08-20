@@ -19,18 +19,19 @@ struct NumberCard: View {
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(fillColor)
-                .shadow(color:.primary.opacity(0.3), radius: 20)
+                .shadow(color:.secondary.opacity(0.7), radius: 10)
 
             VStack(alignment: .center){
-                HStack{
+                HStack(alignment: .lastTextBaseline){
                     Image(systemName: icon)
+                        .sfSymbolStyling()
                         .foregroundColor(iconColor)
-                        .font(.system(size: 40))
+                        .font(.system(size: 30))
+                        .fontWeight(.bold)
                     Text(text)
                         .font(.title2)
-                        .fontWeight(.thin)
-                        .fontDesign(.serif)
-                        .foregroundColor(.secondary)
+                        .fontDesign(.rounded)
+                        .foregroundColor(.primary)
                 }
                 .padding(.top,10)
                 Text("\(number)")
