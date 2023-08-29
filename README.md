@@ -33,10 +33,8 @@ The app has two main tabs:
 
 This project was built using:
 
-- Xcode 15 beta
+- Xcode 14
 - SwiftUI
-- UserNotifications  
-- UserDefaults
 
 No external dependencies are needed.
 
